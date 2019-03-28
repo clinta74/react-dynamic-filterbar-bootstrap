@@ -1,0 +1,102 @@
+@import "variables";
+
+.filter-bar {
+  display: inline-flex;
+  align-items: center;
+
+  .filter-bar- {
+    &item {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      border-left: 1px solid $fb-seperator-color;
+      padding-left: 0.5em;
+
+      &:first-of-type {
+        border-left: none;
+        padding-left: 0;
+      }
+    }
+    
+    &label {
+      display: inline;
+      margin: 0;
+      margin-right: 0.25em;
+    }
+
+    &remove-item {
+      color: $fb-close-icon-color;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0 .5em;
+      
+      &:hover {
+        color: $fb-close-icon-color-hover;
+      }
+    }
+
+    &input-group {
+      display: flex;
+    }
+
+    &dropdown {
+      display: inline-flex;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+
+      &.hide {
+        display: none;
+      }
+    }
+
+    &dropdown-menu {
+      position: absolute;
+      max-height: 11.85em;
+      overflow-y: auto;
+      top: calc(100% + 2px);
+      left: 0;
+      display: none;
+      overflow: hidden;
+      overflow-y: auto;
+      border: 1px solid $fb-seperator-color;
+      padding: 0;
+      min-width: 100%;
+      &.active {
+        display: block;
+      }
+    }
+    
+    &dropdown-menu- {
+      &item {
+        cursor: pointer;
+
+        &:hover {
+          background-color: $fb-item-hover-color;
+        }
+      }
+
+      &item-link {
+        padding: .5em 0.75em;
+        display: block;
+      }
+    }
+
+    &dropdown-button {
+      border: 1px solid $fb-seperator-color;
+      display: flex;
+
+      &:hover {
+        background-color: $fb-item-hover-color;
+      }
+    }
+
+    &dropdown-toggle-arrow {
+      margin-left: 1em;
+      padding-left: 0.5em;
+      border-left: solid 1px $fb-seperator-color;
+    }
+  }
+}

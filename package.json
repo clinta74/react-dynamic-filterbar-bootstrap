@@ -1,0 +1,57 @@
+{
+  "name": "react-filter-bar",
+  "version": "1.0.3",
+  "description": "A filter bar with dynamic filters.",
+  "main": "lib/index.js",
+  "peerDependencies": {
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1"
+  },
+  "devDependencies": {
+    "@types/classnames": "^2.2.7",
+    "@types/lodash": "^4.14.123",
+    "@types/node": "^11.11.6",
+    "@types/react": "^16.8.2",
+    "@types/react-dom": "^16.8.0",
+    "node-sass": "^4.11.0",
+    "parcel-bundler": "^1.12.2",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1",
+    "react-hot-loader": "^4.6.5",
+    "svg-icon-converter": "^1.1.2",
+    "typescript": "^3.3.3"
+  },
+  "watch": {
+    "build:js": "src/{*.tsx, *.ts}",
+    "build:css": "src/{*.scss, *.ts}"
+  },
+  "scripts": {
+    "start": "npx parcel example/src/index.html --out-dir example/dist --open --port 3000",
+    "build": "npm run build:icons && npm run build:js && npm run build:css",
+    "build:js": "npx tsc",
+    "build:css": "npx node-sass src/scss/filter-bar.scss -o ./lib/css",
+    "build:icons": "npx svg-convert -s icons -o src/filter-bar-icons -l FilterBarIcons",
+    "clean": "rm -Rf ./lib",
+    "watch": "npx npm-watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clinta74/react-filter-bar.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/clinta74/react-filter-bar/issues"
+  },
+  "homepage": "https://github.com/clinta74/react-filter-bar#readme",
+  "files": [
+    "lib",
+    "src/scss"
+  ],
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "lodash": "^4.17.11",
+    "npm-watch": "^0.6.0",
+    "react-svg-icon-host": "^1.0.3"
+  }
+}
