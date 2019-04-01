@@ -3,14 +3,13 @@ import { get, head, find, first } from 'lodash';
 import classNames from 'classnames';
 
 // Local imports
-import { FilterBars, FilterBar } from '../../index';
+import { FilterBars } from '../../index';
 import { Operations, Logics } from '../../enums';
 import { Dropdown } from '../../dropdown/dropdown';
 
 type StringFilterProps = {
   showOperator?: boolean,
   className?: string,
-  labelClassName?: string,
   buttonClassName?: string,
 }
 
@@ -42,11 +41,16 @@ export const getDefaultFilterQuery = <Tobj extends {}>(field: FilterBars.FitlerQ
   }]
 });
 
+const Test:React.SFC<FilterBars.FilterProps<unknown, StringFilterProps>> = <Tobj extends {}, S>(props: FilterBars.FilterProps<Tobj, StringFilterProps>) => {
+  const {} = props;
+  return (
+    <div></div>
+  );
+}
 
-
-export class StringFilter<Tobj> extends React.PureComponent<FilterBars.FilterProps<Tobj, StringFilterProps>> {
-  constructor(props: FilterBars.FilterProps<Tobj, StringFilterProps>) {
-    super({ getDefaultFilterQuery, ...props});
+export class StringFilter<Tobj> extends React.Component<FilterBars.FilterProps<Tobj, StringFilterProps>> {
+  public static defaultProps: FilterBars.IGetDefaultFilterQuery<unknown> = {
+    getDefaultFilterQuery,
   }
 
   onChangeValue: React.ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -59,7 +63,7 @@ export class StringFilter<Tobj> extends React.PureComponent<FilterBars.FilterPro
       filterItems: [{
         operation: this.getOperation(this.props.filterQuery) || Operations.CONTAINS,
         value: value,
-      }]
+      }],
     })
   }
 
@@ -95,18 +99,16 @@ export class StringFilter<Tobj> extends React.PureComponent<FilterBars.FilterPro
     const op = find(stringOperations, i => i.operation === operation) || first(stringOperations);
 
     return (
-      <>
-        <label className="filter-bar-label">{label}</label>
-        <div className="filter-bar-input-group input-group">
-          {
-            showOperator &&
-            <div className="input-group-prepend">
-              <Dropdown items={dropdownItems} label={op ? op.label : ''} buttonClassName={buttonClassName} onChange={this.onChangeDropdown} />
-            </div>
-          }
-          <input className={classNames(className, 'filter-bar-input')} placeholder={label} type="text" name={field.toString()} value={value} onChange={this.onChangeValue} />
-        </div>
-      </>
+
+      <div className="filter-bar-input-group input-group">
+        {
+          showOperator &&
+          <div className="input-group-prepend">
+            <Dropdown items={dropdownItems} label={op ? op.label : ''} buttonClassName={buttonClassName} onChange={this.onChangeDropdown} />
+          </div>
+        }
+        <input className={classNames(className, 'filter-bar-input')} placeholder={label} type="text" name={field.toString()} value={value} onChange={this.onChangeValue} />
+      </div>
     );
   }
 }

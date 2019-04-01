@@ -31,6 +31,7 @@
       border: none;
       cursor: pointer;
       padding: 0 .5em;
+      outline: none;
       
       &:hover {
         color: $fb-close-icon-color-hover;

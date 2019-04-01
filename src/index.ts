@@ -1,8 +1,9 @@
 import { FilterBar, Filters, ChangeFQLHander }  from './filter-bar';
 import { Operations, Logics } from './enums';
+import { GetDefaultFilterQueryHandler, RemoveFilterHandler } from './filter-bar/filter-bar';
 
 export declare namespace FilterBars {
-  type FilterUpdateHandler<Tobj> = (filterQuery: FilterBars.FilterQuery<Tobj>) => void;
+  type FilterUpdateHandler<Tobj> = (filterQuery: FilterQuery<Tobj>) => void;
 
   type FilterItem<Tobj> = {
     operation: Operations,
@@ -22,15 +23,18 @@ export declare namespace FilterBars {
     filterQueries: FilterQuery<Tobj>[],
   }
 
-  type GetDefaultFilterQueryHandler<Tobj> = (field: FitlerQueryField<Tobj>) => FilterQuery<Tobj>;
+  interface IGetDefaultFilterQuery<Tobj> {
+    getDefaultFilterQuery?: GetDefaultFilterQueryHandler<Tobj>,
+  }
 
   type FilterProps<Tobj, Props = {}> = {
     label: string;
     field: (keyof Tobj) | string,
-    getDefaultFilterQuery?: GetDefaultFilterQueryHandler<Tobj>,
+    labelClassName?: string,
     filterQuery?: FilterQuery<Tobj>,
-    onFilterUpdate?: FilterUpdateHandler<Tobj>
-  } & Props;
+    onFilterUpdate?: FilterUpdateHandler<Tobj>,
+    shown?: boolean,
+  } & Props & IGetDefaultFilterQuery<Tobj>;
 }
 
 export {
@@ -39,6 +43,8 @@ export {
   FilterBar,
   Filters,
   ChangeFQLHander,
+  GetDefaultFilterQueryHandler,
+  RemoveFilterHandler,
 }
 
 export default {
