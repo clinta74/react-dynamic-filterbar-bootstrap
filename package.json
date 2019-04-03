@@ -17,7 +17,9 @@
     "parcel-bundler": "^1.12.2",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
+    "react-flexbox-table": "^0.3.3",
     "react-hot-loader": "^4.6.5",
+    "react-svg-icon-host": "^1.0.3",
     "svg-icon-converter": "^1.1.2",
     "typescript": "^3.3.3"
   },
@@ -52,6 +54,6 @@
     "classnames": "^2.2.6",
     "lodash": "^4.17.11",
     "npm-watch": "^0.6.0",
-    "react-svg-icon-host": "^1.0.3"
+    "react-select": "^2.4.2"
   }
 }

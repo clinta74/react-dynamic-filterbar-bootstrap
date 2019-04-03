@@ -10,7 +10,7 @@ export declare namespace FilterBars {
     value: (Tobj[keyof Tobj] | unknown),
   }
 
-  type FitlerQueryField<Tobj> = (keyof Tobj) | string;
+  type FitlerQueryField<Tobj> = (keyof Tobj) | string | (keyof Tobj)[] | string[];
 
   type FilterQuery<Tobj> = {
     logic: Logics,
@@ -29,7 +29,7 @@ export declare namespace FilterBars {
 
   type FilterProps<Tobj, Props = {}> = {
     label: string;
-    field: (keyof Tobj) | string,
+    field: FitlerQueryField<Tobj>,
     labelClassName?: string,
     filterQuery?: FilterQuery<Tobj>,
     onFilterUpdate?: FilterUpdateHandler<Tobj>,

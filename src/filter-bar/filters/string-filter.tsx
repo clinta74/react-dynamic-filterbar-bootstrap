@@ -55,7 +55,7 @@ export class StringFilter<Tobj> extends React.Component<FilterBars.FilterProps<T
 
   onChangeValue: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     const value = event.currentTarget.value;
-    const { onFilterUpdate, field } = this.props;
+    const { onFilterUpdate, field: field } = this.props;
 
     onFilterUpdate && onFilterUpdate({
       field,
@@ -68,7 +68,7 @@ export class StringFilter<Tobj> extends React.Component<FilterBars.FilterProps<T
   }
 
   onChangeDropdown = (operation: Operations) => {
-    const { onFilterUpdate, field } = this.props;
+    const { onFilterUpdate, field: field } = this.props;
 
     onFilterUpdate && onFilterUpdate({
       field,

@@ -12,7 +12,7 @@ export type GetDefaultFilterQueryHandler<Tobj> = (field: FilterBars.FitlerQueryF
 
 type FilterBarProps<Tobj> = {
     onFilterUpdate: ChangeFQLHander<Tobj>,
-    fql: FilterBars.FilterQueryLanguage<Tobj>,
+    fql: FilterBars.FilterQueryLanguage<Tobj> | undefined,
     labelClassName?: string,
     buttonClassName?: string,
 };
@@ -54,10 +54,12 @@ export class FilterBar<Tobj> extends React.Component<FilterBarProps<Tobj>, Filte
 
         if (!!onFilterUpdate) {
             if (!!fql && !!fql.filterQueries) {
-                onFilterUpdate({...fql, filterQueries: [
-                    ...filterQueries,
-                    ...fql.filterQueries,
-                ]});
+                onFilterUpdate({
+                    ...fql, filterQueries: [
+                        ...filterQueries,
+                        ...fql.filterQueries,
+                    ]
+                });
             } else {
                 onFilterUpdate({
                     logic: Logics.AND,
@@ -69,9 +71,10 @@ export class FilterBar<Tobj> extends React.Component<FilterBarProps<Tobj>, Filte
 
     onRemoveFilter: RemoveFilterHandler<Tobj> = (field) => {
         const { fql, onFilterUpdate } = this.props;
-
-        fql.filterQueries = [...fql.filterQueries.filter(fq => fq.field != field)];
-        onFilterUpdate(fql);
+        if (!!fql) {
+            fql.filterQueries = [...fql.filterQueries.filter(fq => this.getField(fq.field) != this.getField(field))];
+            onFilterUpdate(fql);
+        }
     }
 
     onAddFilter = (filter: FilterElement<Tobj>) => {
@@ -83,9 +86,14 @@ export class FilterBar<Tobj> extends React.Component<FilterBarProps<Tobj>, Filte
             filterItems: []
         };
 
-        fql.filterQueries = [...fql.filterQueries, filterQuery];
+        if (!!fql) {
+            fql.filterQueries = [...fql.filterQueries, filterQuery];
+            onFilterUpdate(fql);
+        }
+    }
 
-        onFilterUpdate(fql);
+    getField(fields: FilterBars.FitlerQueryField<Tobj>) {
+        return Array.isArray(fields) ? fields.join(':') : fields.toString();
     }
 
     render() {
@@ -109,13 +117,13 @@ export class FilterBar<Tobj> extends React.Component<FilterBarProps<Tobj>, Filte
                     onFilterUpdate(fql);
                 }
             });
-            const field = activeFilter.props.field.toString();
+            const field = this.getField(activeFilter.props.field);
             const label = activeFilter.props.label;
             const labelClassName = activeFilter.props.labelClassName;
             return <FilterItem key={field} filter={filter} onRemoveFilter={this.onRemoveFilter} field={field} label={label} labelClassName={labelClassName} />;
         });
 
-        const activeFields = this.props.fql.filterQueries.map(fq => fq.field);
+        const activeFields = !!fql ? fql.filterQueries.map(fq => fq.field) : [];
         const availableFilterItems = this.availableChildren.filter(availableChild =>
             !activeFields.includes((availableChild as FilterElement<Tobj>).props.field)) as FilterElement<Tobj>[];
         const dropdownItems = availableFilterItems.map(f => ({

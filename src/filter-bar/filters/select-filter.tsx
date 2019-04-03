@@ -33,7 +33,7 @@ export class SelectFilter<Tobj> extends React.PureComponent<FilterBars.FilterPro
   }
 
   onChangeValue: (values: ValueType<Option>, action: ActionMeta) => void = (values, action) => {
-    const { onFilterUpdate, field } = this.props;
+    const { onFilterUpdate, field: field } = this.props;
     const filterItems = (values && Array.isArray(values)) ? values.map(value => ({
       operation: Operations.EQ,
       value: value.value,
