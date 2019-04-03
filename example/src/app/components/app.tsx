@@ -36,14 +36,18 @@ export class App extends React.Component<AppProps, AppState> {
         this.setState({ fql });
     }
 
-    stringContainsTest: ChangeFQLHander<MyData> = (fql) => {
+    containsTest: ChangeFQLHander<MyData> = (fql) => {
         // console.log(' ===STRING CONTAINS TEST====');
         // console.log('Current FQL State: ', this.state.fql);
-        let matches = [];
+        let matches = {
+            names:[],
+            comments:[],
+            amounts:[],
+            colors:[]
+        };
         let queries = this.state.fql.filterQueries;
         queries.forEach(query => {
             if (Array.isArray(query.field)) {
-                let nameArray = [];
                 console.log('Searching for name: ', query.filterItems[0].value);
                 const searched = query.filterItems[0].value as string;
                 const name = searched.toLowerCase();
@@ -51,13 +55,14 @@ export class App extends React.Component<AppProps, AppState> {
                     const first = person.firstName.toLowerCase();
                     const last = person.lastName.toLowerCase();
                     if (first.includes(name)) {
-                        nameArray.push(person);
+                        matches.names.push(person);
                     } else if (last.includes(name)) {
-                        nameArray.push(person);
+                        matches.names.push(person);
                     }
                 });
-                console.log('Matches: ', nameArray);
+                console.log('All matches: ', matches);
             }
+
         });
 
 
@@ -84,8 +89,7 @@ export class App extends React.Component<AppProps, AppState> {
                         <Filters.NumericFilter<MyData> field="amount" label="Amount" className="form-control" />
                         <Filters.SelectFilter<MyData> field="color" label="Colors" options={colorOptions} styles={customStyles} isMulti />
                     </FilterBar>
-                    <button onClick={this.stringContainsTest} fql={fql}> Filter </button>
-                    <button onClick = {() => {console.log(this.state)}}>Current State</button>
+                    <button onClick={this.containsTest} fql={fql}> Filter </button>
                 </div>
 
                 <div>
