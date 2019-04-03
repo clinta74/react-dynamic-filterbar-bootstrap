@@ -60,8 +60,17 @@ export class App extends React.Component<AppProps, AppState> {
                         matches.names.push(person);
                     }
                 });
-                console.log('All matches: ', matches);
+            } else if (query.field === 'amount') {
+                const amt = Number(query.filterItems[0].value) as number;
+                console.log('Searching for amount: ', typeof(amt), amt);
+                data.forEach(person => {
+                    // Question: why does == work here but === does not?
+
+                    if (person.amount == amt) matches.amounts.push(person);
+                })
+
             }
+            console.log('All matches: ', matches);
 
         });
 
