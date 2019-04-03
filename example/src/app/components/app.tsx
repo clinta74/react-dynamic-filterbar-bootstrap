@@ -46,6 +46,7 @@ export class App extends React.Component<AppProps, AppState> {
             colors:[]
         };
         let queries = this.state.fql.filterQueries;
+
         queries.forEach(query => {
             if (Array.isArray(query.field)) {
                 console.log('Searching for name: ', query.filterItems[0].value);
@@ -64,20 +65,26 @@ export class App extends React.Component<AppProps, AppState> {
                 const amt = Number(query.filterItems[0].value) as number;
                 console.log('Searching for amount: ', typeof(amt), amt);
                 data.forEach(person => {
-                    // Question: why does == work here but === does not?
-
                     if (person.amount == amt) matches.amounts.push(person);
                 })
 
-            }
+            } else if (query.field === 'color') {
+                const filterColors = query.filterItems;
+                filterColors.forEach(color => console.log('Searching for: ', color.value));
+                data.forEach(person => {
+                    for (let i = 0; i < filterColors.length; i++) {
+                        if (person.colors === filterColors[i].value) {
+                            matches.colors.push(person);
+                            }
+                        }
+                    })
+                }
+            })
+
             console.log('All matches: ', matches);
+        }
 
-        });
 
-
-        
-        
-    }
 
 
     render() {
