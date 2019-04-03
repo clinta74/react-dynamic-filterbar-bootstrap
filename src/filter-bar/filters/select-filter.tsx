@@ -61,7 +61,7 @@ export class SelectFilter<Tobj> extends React.PureComponent<FilterBars.FilterPro
           options={options}
           getOptionLabel={o => o.option}
           getOptionValue={o => o.value}
-          value={filter(options, (o: Option) => value.includes(o.value))}
+          value={filter(options, (o) => value.includes(o.value))}
           onChange={this.onChangeValue}
         />
       </div>

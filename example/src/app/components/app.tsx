@@ -4,6 +4,7 @@ import { filter, get } from 'lodash';
 import { FilterBars, Filters, FilterBar, ChangeFQLHander, Operations, Logics } from '../../../../src/index';
 import { customStyles } from '../../../../src/filter-bar/filters/select-filter';
 import { data } from './example-data';
+import { string } from 'prop-types';
 
 const colors = ['red', 'green', 'blue', 'black', 'pink', 'yellow', 'orange', 'indigo'];
 
@@ -30,9 +31,40 @@ export class App extends React.Component<AppProps, AppState> {
     }
 
     onFilterUpdate: ChangeFQLHander<MyData> = (fql) => {
+        console.log(' ===onFilterUpdate====');
         console.log('FQL: ', fql);
         this.setState({ fql });
     }
+
+    stringContainsTest: ChangeFQLHander<MyData> = (fql) => {
+        // console.log(' ===STRING CONTAINS TEST====');
+        // console.log('Current FQL State: ', this.state.fql);
+        let matches = [];
+        let queries = this.state.fql.filterQueries;
+        queries.forEach(query => {
+            if (Array.isArray(query.field)) {
+                let nameArray = [];
+                console.log('Searching for name: ', query.filterItems[0].value);
+                const searched = query.filterItems[0].value as string;
+                const name = searched.toLowerCase();
+                data.forEach(person => {
+                    const first = person.firstName.toLowerCase();
+                    const last = person.lastName.toLowerCase();
+                    if (first.includes(name)) {
+                        nameArray.push(person);
+                    } else if (last.includes(name)) {
+                        nameArray.push(person);
+                    }
+                });
+                console.log('Matches: ', nameArray);
+            }
+        });
+
+
+        
+        
+    }
+
 
     render() {
         const colorOptions = colors.map((c, i) => ({
@@ -46,12 +78,14 @@ export class App extends React.Component<AppProps, AppState> {
             <section className="container">
                 <h2>Filter Bar Example</h2>
                 <div className="mb-4">
-                    <FilterBar<MyData> onFilterUpdate={this.onFilterUpdate} fql={fql} buttonClassName="btn">
+                    <FilterBar onFilterUpdate={this.onFilterUpdate} fql={fql} buttonClassName="btn">
                         <Filters.StringFilter<MyData> field={['firstName', 'lastName']} label="Name" className="form-control" buttonClassName="btn btn-primary" shown />
                         <Filters.StringFilter<MyData> field="comment" label="Comment" className="form-control" buttonClassName="btn btn-primary" showOperator />
                         <Filters.NumericFilter<MyData> field="amount" label="Amount" className="form-control" />
                         <Filters.SelectFilter<MyData> field="color" label="Colors" options={colorOptions} styles={customStyles} isMulti />
                     </FilterBar>
+                    <button onClick={this.stringContainsTest} fql={fql}> Filter </button>
+                    <button onClick = {() => {console.log(this.state)}}>Current State</button>
                 </div>
 
                 <div>
