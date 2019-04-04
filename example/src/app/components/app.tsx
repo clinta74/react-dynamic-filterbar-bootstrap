@@ -38,8 +38,7 @@ export class App extends React.Component<AppProps, AppState> {
     }
 
     containsTest: ChangeFQLHander<MyData> = (fql) => {
-        // console.log(' ===STRING CONTAINS TEST====');
-        // console.log('Current FQL State: ', this.state.fql);
+
         let matches = {
             names:[],
             comments:[],
@@ -83,10 +82,11 @@ export class App extends React.Component<AppProps, AppState> {
                     })
                 }
             })
-            console.log('All matches: ', matches);
+            // console.log('All matches: ', matches);
+
+            //Remove Duplicates:
             let concatenated = matches.names.concat(matches.comments.concat(matches.amounts.concat(matches.colors)));
             console.log('CONCAT: ', concatenated);]
-            
             const uniqueArray = concatenated.filter((person,index) => {
                 return index === concatenated.findIndex(obj => {
                   return JSON.stringify(obj) === JSON.stringify(person);
@@ -95,6 +95,9 @@ export class App extends React.Component<AppProps, AppState> {
 
               console.log('UNIQUE: ', uniqueArray);
 
+              this.setState({
+                currentData: uniqueArray,
+                });
 
         }
 
