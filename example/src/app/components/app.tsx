@@ -27,6 +27,7 @@ export class App extends React.Component<AppProps, AppState> {
         super(props);
         this.state = {
             fql: undefined,
+            currentData: data
         }
     }
 
@@ -47,8 +48,10 @@ export class App extends React.Component<AppProps, AppState> {
         };
         let queries = this.state.fql.filterQueries;
 
+        // Querying for each criteria:
+
         queries.forEach(query => {
-            if (Array.isArray(query.field)) {
+            if (Array.isArray(query.field) && query.filterItems[0].value !== '') {
                 console.log('Searching for name: ', query.filterItems[0].value);
                 const searched = query.filterItems[0].value as string;
                 const name = searched.toLowerCase();
@@ -80,10 +83,20 @@ export class App extends React.Component<AppProps, AppState> {
                     })
                 }
             })
-
             console.log('All matches: ', matches);
-        }
+            let concatenated = matches.names.concat(matches.comments.concat(matches.amounts.concat(matches.colors)));
+            console.log('CONCAT: ', concatenated);]
+            
+            const uniqueArray = concatenated.filter((person,index) => {
+                return index === concatenated.findIndex(obj => {
+                  return JSON.stringify(obj) === JSON.stringify(person);
+                });
+              });
 
+              console.log('UNIQUE: ', uniqueArray);
+
+
+        }
 
 
 
@@ -109,7 +122,7 @@ export class App extends React.Component<AppProps, AppState> {
                 </div>
 
                 <div>
-                    <FlexTable.DataTable items={data}>
+                    <FlexTable.DataTable items={this.state.currentData}>
                         <FlexTable.BoundColumn<MyData> binding={item => item.firstName} headerText="First Name" className="col-3"/>
                         <FlexTable.BoundColumn<MyData> binding={item => item.lastName} headerText="Last Name" className="col-3"/>
                         <FlexTable.BoundColumn<MyData> binding={item => item.comment} headerText="Comment" className="col-6"/>
