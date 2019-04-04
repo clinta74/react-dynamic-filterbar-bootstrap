@@ -32,12 +32,10 @@ export class App extends React.Component<AppProps, AppState> {
     }
 
     onFilterUpdate: ChangeFQLHander<MyData> = (fql) => {
-        console.log(' ===onFilterUpdate====');
-        console.log('FQL: ', fql);
         this.setState({ fql });
     }
 
-    containsTest: ChangeFQLHander<MyData> = (fql) => {
+    private runFilters: ChangeFQLHander<MyData> = (fql) => {
 
         let matches = {
             names:[],
@@ -48,10 +46,8 @@ export class App extends React.Component<AppProps, AppState> {
         let queries = this.state.fql.filterQueries;
 
         // Querying for each criteria:
-
         queries.forEach(query => {
             if (Array.isArray(query.field) && query.filterItems[0].value !== '') {
-                console.log('Searching for name: ', query.filterItems[0].value);
                 const searched = query.filterItems[0].value as string;
                 const name = searched.toLowerCase();
                 data.forEach(person => {
@@ -65,14 +61,12 @@ export class App extends React.Component<AppProps, AppState> {
                 });
             } else if (query.field === 'amount') {
                 const amt = Number(query.filterItems[0].value) as number;
-                console.log('Searching for amount: ', typeof(amt), amt);
                 data.forEach(person => {
-                    if (person.amount == amt) matches.amounts.push(person);
+                    if (person.amount === amt) matches.amounts.push(person);
                 })
 
             } else if (query.field === 'color') {
                 const filterColors = query.filterItems;
-                filterColors.forEach(color => console.log('Searching for: ', color.value));
                 data.forEach(person => {
                     for (let i = 0; i < filterColors.length; i++) {
                         if (person.colors === filterColors[i].value) {
@@ -91,8 +85,9 @@ export class App extends React.Component<AppProps, AppState> {
                 });
               });
 
+              //Update the data shown:
               this.setState({
-                currentData: uniqueArray,
+                currentData: uniqueArray
                 });
 
         }
@@ -115,7 +110,7 @@ export class App extends React.Component<AppProps, AppState> {
                         <Filters.NumericFilter<MyData> field="amount" label="Amount" className="form-control" />
                         <Filters.SelectFilter<MyData> field="color" label="Colors" options={colorOptions} styles={customStyles} isMulti />
                     </FilterBar>
-                    <button onClick={this.containsTest} fql={fql}> Filter </button>
+                    <button onClick={this.runFilters} fql={fql}> Filter </button>
                 </div>
 
                 <div>
