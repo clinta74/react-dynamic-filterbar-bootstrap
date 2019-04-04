@@ -82,26 +82,20 @@ export class App extends React.Component<AppProps, AppState> {
                     })
                 }
             })
-            // console.log('All matches: ', matches);
 
             //Remove Duplicates:
             let concatenated = matches.names.concat(matches.comments.concat(matches.amounts.concat(matches.colors)));
-            console.log('CONCAT: ', concatenated);]
             const uniqueArray = concatenated.filter((person,index) => {
                 return index === concatenated.findIndex(obj => {
                   return JSON.stringify(obj) === JSON.stringify(person);
                 });
               });
 
-              console.log('UNIQUE: ', uniqueArray);
-
               this.setState({
                 currentData: uniqueArray,
                 });
 
         }
-
-
 
     render() {
         const colorOptions = colors.map((c, i) => ({
