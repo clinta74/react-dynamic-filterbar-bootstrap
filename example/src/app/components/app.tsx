@@ -4,7 +4,8 @@ import { filter, get } from 'lodash';
 import { FilterBars, Filters, FilterBar, ChangeFQLHander, Operations, Logics } from '../../../../src/index';
 import { customStyles } from '../../../../src/filter-bar/filters/select-filter';
 import { data } from './example-data';
-import { string } from 'prop-types';
+import { string, number } from 'prop-types';
+import { matchQuery, Query } from '../filter-helper-functions';
 
 const colors = ['red', 'green', 'blue', 'black', 'pink', 'yellow', 'orange', 'indigo'];
 
@@ -27,7 +28,7 @@ export class App extends React.Component<AppProps, AppState> {
         super(props);
         this.state = {
             fql: undefined,
-            currentData: data
+            display: data
         }
     }
 
@@ -35,6 +36,7 @@ export class App extends React.Component<AppProps, AppState> {
         this.setState({ fql });
     }
 
+    /** Executes currently selected filters on table */
     private runFilters: ChangeFQLHander<MyData> = (fql) => {
 
         let matches = {
@@ -87,9 +89,43 @@ export class App extends React.Component<AppProps, AppState> {
 
               //Update the data shown:
               this.setState({
-                currentData: uniqueArray
+                display: uniqueArray
                 });
 
+        }
+
+        private runFilters2: ChangeFQLHander<MyData> = (fql) => {
+            console.log('FQL: ', this.state.fql.filterQueries);
+            let condensedQuery:Query = {
+                name: undefined,
+                amount: undefined,
+                colors: []
+            }
+            let fqlQueries = this.state.fql.filterQueries;
+
+            fqlQueries.forEach(query => {
+                if (Array.isArray(query.field) && query.filterItems[0].value !== '') {
+                    const searched = query.filterItems[0].value as string;
+                    condensedQuery.name = searched.toLowerCase();
+                } else if (query.field === 'amount') {
+                    condensedQuery.amount = Number(query.filterItems[0].value) as number;
+                
+                } else if (query.field === 'color') {
+                    query.filterItems.forEach(color => condensedQuery.colors.push(color.value));
+                    
+                }
+                console.log('Condensed Query: ', condensedQuery);
+            }
+
+
+              const matches = data.filter(
+                  person => matchQuery(condensedQuery, person)
+              )
+
+              this.setState({
+                display: matches
+                });
+            
         }
 
     render() {
@@ -111,10 +147,12 @@ export class App extends React.Component<AppProps, AppState> {
                         <Filters.SelectFilter<MyData> field="color" label="Colors" options={colorOptions} styles={customStyles} isMulti />
                     </FilterBar>
                     <button onClick={this.runFilters} fql={fql}> Filter </button>
+                    <button onClick={this.runFilters2} fql={fql}> Filter 2 </button>
+
                 </div>
 
                 <div>
-                    <FlexTable.DataTable items={this.state.currentData}>
+                    <FlexTable.DataTable items={this.state.display}>
                         <FlexTable.BoundColumn<MyData> binding={item => item.firstName} headerText="First Name" className="col-3"/>
                         <FlexTable.BoundColumn<MyData> binding={item => item.lastName} headerText="Last Name" className="col-3"/>
                         <FlexTable.BoundColumn<MyData> binding={item => item.comment} headerText="Comment" className="col-6"/>
