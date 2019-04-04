@@ -94,8 +94,8 @@ export class App extends React.Component<AppProps, AppState> {
 
         }
 
+        /** Executes currently selected filters on display table using helper functions */
         private runFilters2: ChangeFQLHander<MyData> = (fql) => {
-            console.log('FQL: ', this.state.fql.filterQueries);
             let condensedQuery:Query = {
                 name: undefined,
                 amount: undefined,
@@ -103,6 +103,7 @@ export class App extends React.Component<AppProps, AppState> {
             }
             let fqlQueries = this.state.fql.filterQueries;
 
+            //Iterates through the selected filters and adds them to condensedQuery
             fqlQueries.forEach(query => {
                 if (Array.isArray(query.field) && query.filterItems[0].value !== '') {
                     const searched = query.filterItems[0].value as string;
@@ -114,9 +115,7 @@ export class App extends React.Component<AppProps, AppState> {
                     query.filterItems.forEach(color => condensedQuery.colors.push(color.value));
                     
                 }
-                console.log('Condensed Query: ', condensedQuery);
             }
-
 
               const matches = data.filter(
                   person => matchQuery(condensedQuery, person)
@@ -124,8 +123,7 @@ export class App extends React.Component<AppProps, AppState> {
 
               this.setState({
                 display: matches
-                });
-            
+                });    
         }
 
     render() {
