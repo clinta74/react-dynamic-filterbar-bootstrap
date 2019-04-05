@@ -30,7 +30,7 @@
     "build:css": "src/{*.scss, *.ts}"
   },
   "scripts": {
-    "start": "npx parcel example/src/index.html --out-dir example/dist --open --port 3000",
+    "start": "npx parcel example/src/index.html --out-dir example/dist --open",
     "build": "npm run build:icons && npm run build:js && npm run build:css",
     "build:js": "npx tsc",
     "build:css": "npx node-sass src/scss/filter-bar.scss -o ./lib/css",

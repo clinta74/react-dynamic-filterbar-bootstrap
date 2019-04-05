@@ -56,27 +56,27 @@ export class NumericFilter<Tobj> extends React.Component<FilterBars.FilterProps<
 
   onChangeValue: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     const value = event.currentTarget.value;
-    const { onFilterUpdate, field: field } = this.props;
+    const { onFilterUpdate, field, filterQuery} = this.props;
 
     onFilterUpdate && onFilterUpdate({
       field,
       logic: Logics.OR,
       filterItems: [{
-        operation: this.getOperation(this.props.filterQuery) || Operations.CONTAINS,
+        operation: this.getOperation(filterQuery),
         value: value,
       }]
     })
   }
 
   onChangeDropdown = (operation: Operations) => {
-    const { onFilterUpdate, field: field } = this.props;
+    const { onFilterUpdate, field, filterQuery } = this.props;
 
     onFilterUpdate && onFilterUpdate({
       field,
       logic: Logics.OR,
       filterItems: [{
         operation: operation,
-        value: this.getValue(this.props.filterQuery),
+        value: this.getValue(filterQuery),
       }]
     })
   }

@@ -1,7 +1,6 @@
 import React from 'react';
 import DatePicker from 'react-datepicker';
-import { get, head, find, first } from 'lodash';
-import classNames from 'classnames';
+import { get, find } from 'lodash';
 
 // Local imports
 import { FilterBars } from '../../index';
