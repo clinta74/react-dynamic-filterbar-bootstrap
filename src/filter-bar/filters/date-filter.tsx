@@ -42,14 +42,27 @@ export class DateFilter<Tobj> extends React.Component<FilterBars.FilterProps<Tob
     getDefaultFilterQuery,
   }
 
+  /**
+   * Get the start date from the filter query.
+   * This is always the value in the first filter item of the query.
+   */
   getStartDate = <Tobj extends {}>(filterQuery: FilterBars.FilterQuery<Tobj> | undefined) => {
     return get(filterQuery, 'filterItems[0].value', new Date());
   }
 
+  /**
+   * Get the end date from the filter query.
+   * This is always the value in the second element of filter items in a query.
+   * The second element only exists for between operations.
+   */
   getEndDate = <Tobj extends {}>(filterQuery: FilterBars.FilterQuery<Tobj> | undefined) => {
     return get(filterQuery, 'filterItems[1].value', new Date());
   }
 
+  /**
+   * Get the operation value based on the number of filter items and the 
+   * operation of the first item, if there is only one.
+   */
   getOperationValue = <Tobj extends {}>(filterQuery: FilterBars.FilterQuery<Tobj> | undefined) => {
     if(filterQuery) {
       if(filterQuery.filterItems.length > 1) {
@@ -61,6 +74,9 @@ export class DateFilter<Tobj> extends React.Component<FilterBars.FilterProps<Tob
     return 1;
   }
 
+  /**
+   * Event handler for when the start date has changed.
+   */
   onChangeStartDatePicker = (startDate: Date) => {
     const { onFilterUpdate, field, filterQuery } = this.props
     onFilterUpdate && onFilterUpdate({
@@ -70,6 +86,9 @@ export class DateFilter<Tobj> extends React.Component<FilterBars.FilterProps<Tob
     });
   }
 
+  /**
+   * Event handler for when the end date has changed.
+   */
   onChangeEndDatePicker = (endDate: Date) => {
     const { onFilterUpdate, field, filterQuery } = this.props
     onFilterUpdate && onFilterUpdate({
@@ -79,6 +98,9 @@ export class DateFilter<Tobj> extends React.Component<FilterBars.FilterProps<Tob
     });
   }
 
+  /**
+   * Event handler for whe the operation is changed.
+   */
   onChangeDropdown = (operationValue: number) => {
     const { onFilterUpdate, field, filterQuery } = this.props;
     const startDate = this.getStartDate(filterQuery);
