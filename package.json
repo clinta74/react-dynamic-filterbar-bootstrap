@@ -1,7 +1,7 @@
 {
-  "name": "react-filter-bar",
-  "version": "1.0.3",
-  "description": "A filter bar with dynamic filters.",
+  "name": "react-dynamic-filterbar",
+  "version": "0.1.1",
+  "description": "A filter bar to host dynamic filters using react.",
   "main": "lib/index.js",
   "peerDependencies": {
     "react": "^16.8.1",

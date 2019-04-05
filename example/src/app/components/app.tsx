@@ -1,7 +1,6 @@
 import React from 'react';
 import FlexTable from 'react-flexbox-table';
-import { filter, get } from 'lodash';
-import { FilterBars, Filters, FilterBar, ChangeFQLHander, Operations, Logics } from '../../../../src/index';
+import { FilterBars, Filters, FilterBar, ChangeFQLHander } from '../../../../src/index';
 import { customStyles } from '../../../../src/filter-bar/filters/select-filter';
 import { data } from './example-data';
 
@@ -35,7 +34,7 @@ export class App extends React.Component<AppProps, AppState> {
     }
 
     render() {
-        const colorOptions = colors.map((c, i) => ({
+        const colorOptions = colors.map((c) => ({
             value: c,
             option: c,
         }));
