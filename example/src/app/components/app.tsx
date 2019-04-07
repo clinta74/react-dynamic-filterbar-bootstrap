@@ -28,73 +28,19 @@ export class App extends React.Component<AppProps, AppState> {
         super(props);
         this.state = {
             fql: undefined,
-            display: data
+            display: data,
+            filterApplied: 'No Filters Applied'
         }
     }
 
     onFilterUpdate: ChangeFQLHander<MyData> = (fql) => {
-        this.setState({ fql });
+        this.setState({ 
+            fql,
+            filterApplied: 'New Filters Not Run'
+        });
     }
 
-    /** Executes currently selected filters on table */
-    private runFilters: ChangeFQLHander<MyData> = (fql) => {
-
-        let matches = {
-            names:[],
-            comments:[],
-            amounts:[],
-            colors:[]
-        };
-        let queries = this.state.fql.filterQueries;
-
-        // Querying for each criteria:
-        queries.forEach(query => {
-            if (Array.isArray(query.field) && query.filterItems[0].value !== '') {
-                const searched = query.filterItems[0].value as string;
-                const name = searched.toLowerCase();
-                data.forEach(person => {
-                    const first = person.firstName.toLowerCase();
-                    const last = person.lastName.toLowerCase();
-                    if (first.includes(name)) {
-                        matches.names.push(person);
-                    } else if (last.includes(name)) {
-                        matches.names.push(person);
-                    }
-                });
-            } else if (query.field === 'amount') {
-                const amt = Number(query.filterItems[0].value) as number;
-                data.forEach(person => {
-                    if (person.amount === amt) matches.amounts.push(person);
-                })
-
-            } else if (query.field === 'color') {
-                const filterColors = query.filterItems;
-                data.forEach(person => {
-                    for (let i = 0; i < filterColors.length; i++) {
-                        if (person.colors === filterColors[i].value) {
-                            matches.colors.push(person);
-                            }
-                        }
-                    })
-                }
-            })
-
-            //Remove Duplicates:
-            let concatenated = matches.names.concat(matches.comments.concat(matches.amounts.concat(matches.colors)));
-            const uniqueArray = concatenated.filter((person,index) => {
-                return index === concatenated.findIndex(obj => {
-                  return JSON.stringify(obj) === JSON.stringify(person);
-                });
-              });
-
-              //Update the data shown:
-              this.setState({
-                display: uniqueArray
-                });
-
-        }
-
-        /** Cleaner code for runFilters function; executes currently selected filters on table */
+        /** Cleaner code for runFilters function; executes currently selected filters on table; previous filter below */
         private runFilters2: ChangeFQLHander<MyData> = (fql) => {
             let condensedQuery:Query = {
                 name: undefined,
@@ -114,7 +60,6 @@ export class App extends React.Component<AppProps, AppState> {
                     condensedQuery.name = searched.toLowerCase();
                 } else if (query.field === 'amount') {
                     condensedQuery.amount = Number(query.filterItems[0].value) as number;
-                
                 } else if (query.field === 'color') {
                     query.filterItems.forEach(color => condensedQuery.colors.push(color.value));
                 } else if (query.field === 'comment') {
@@ -128,13 +73,18 @@ export class App extends React.Component<AppProps, AppState> {
               )
               console.log('condensed Query', condensedQuery);
               this.setState({
-                display: matches
+                display: matches,
+                filterApplied: 'Filters Applied'
                 });    
         }
 
-        private showState: ChangeFQLHander<MyData> = (fql) => {
-            console.log(this.state);
+        private showAll: ChangeFQLHander<MyData> = () => {
+            this.setState({
+                display: data,
+                filterApplied: 'No Filters Applied'
+            })
         }
+
 
     render() {
         const colorOptions = colors.map((c, i) => ({
@@ -154,9 +104,9 @@ export class App extends React.Component<AppProps, AppState> {
                         <Filters.NumericFilter<MyData> field="amount" label="Amount" className="form-control" />
                         <Filters.SelectFilter<MyData> field="color" label="Colors" options={colorOptions} styles={customStyles} isMulti />
                     </FilterBar>
-                    <button onClick={this.runFilters} fql={fql}> Filter </button>
-                    <button onClick={this.runFilters2} fql={fql}> Filter 2 </button>
-                    <button onClick={this.showState}> State </button>
+                    {/* <button onClick={this.runFilters} fql={fql}> Old Filter </button> */}
+                    <button onClick={this.runFilters2} fql={fql}> Run Filters </button>
+                    <button onClick = {this.showAll} fql = {fql} title="Click to toggle the filters on or off">{this.state.filterApplied}</button>
 
 
                 </div>
@@ -195,3 +145,66 @@ export class App extends React.Component<AppProps, AppState> {
 
 //     return items;
 // }
+
+
+
+
+/** Executes currently selected filters on table */
+/*
+private runFilters: ChangeFQLHander<MyData> = (fql) => {
+
+    let matches = {
+        names:[],
+        comments:[],
+        amounts:[],
+        colors:[]
+    };
+    let queries = this.state.fql.filterQueries;
+
+    // Querying for each criteria:
+    queries.forEach(query => {
+        if (Array.isArray(query.field) && query.filterItems[0].value !== '') {
+            const searched = query.filterItems[0].value as string;
+            const name = searched.toLowerCase();
+            data.forEach(person => {
+                const first = person.firstName.toLowerCase();
+                const last = person.lastName.toLowerCase();
+                if (first.includes(name)) {
+                    matches.names.push(person);
+                } else if (last.includes(name)) {
+                    matches.names.push(person);
+                }
+            });
+        } else if (query.field === 'amount') {
+            const amt = Number(query.filterItems[0].value) as number;
+            data.forEach(person => {
+                if (person.amount === amt) matches.amounts.push(person);
+            })
+
+        } else if (query.field === 'color') {
+            const filterColors = query.filterItems;
+            data.forEach(person => {
+                for (let i = 0; i < filterColors.length; i++) {
+                    if (person.colors === filterColors[i].value) {
+                        matches.colors.push(person);
+                        }
+                    }
+                })
+            }
+        })
+
+        //Remove Duplicates:
+        let concatenated = matches.names.concat(matches.comments.concat(matches.amounts.concat(matches.colors)));
+        const uniqueArray = concatenated.filter((person,index) => {
+            return index === concatenated.findIndex(obj => {
+              return JSON.stringify(obj) === JSON.stringify(person);
+            });
+          });
+
+          //Update the data shown:
+          this.setState({
+            display: uniqueArray
+            });
+
+    }
+    */
