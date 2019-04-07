@@ -94,12 +94,16 @@ export class App extends React.Component<AppProps, AppState> {
 
         }
 
-        /** Executes currently selected filters on display table using helper functions */
+        /** Cleaner code for runFilters function; executes currently selected filters on table */
         private runFilters2: ChangeFQLHander<MyData> = (fql) => {
             let condensedQuery:Query = {
                 name: undefined,
                 amount: undefined,
-                colors: []
+                colors: [],
+                comment: {
+                    operation: string,
+                    value: string
+                }
             }
             let fqlQueries = this.state.fql.filterQueries;
 
@@ -113,17 +117,23 @@ export class App extends React.Component<AppProps, AppState> {
                 
                 } else if (query.field === 'color') {
                     query.filterItems.forEach(color => condensedQuery.colors.push(color.value));
-                    
+                } else if (query.field === 'comment') {
+                    console.log('filter items', query.filterItems[0]);
+                    condensedQuery.comment = query.filterItems[0];
                 }
             }
 
               const matches = data.filter(
                   person => matchQuery(condensedQuery, person)
               )
-
+              console.log('condensed Query', condensedQuery);
               this.setState({
                 display: matches
                 });    
+        }
+
+        private showState: ChangeFQLHander<MyData> = (fql) => {
+            console.log(this.state);
         }
 
     render() {
@@ -146,6 +156,8 @@ export class App extends React.Component<AppProps, AppState> {
                     </FilterBar>
                     <button onClick={this.runFilters} fql={fql}> Filter </button>
                     <button onClick={this.runFilters2} fql={fql}> Filter 2 </button>
+                    <button onClick={this.showState}> State </button>
+
 
                 </div>
 
