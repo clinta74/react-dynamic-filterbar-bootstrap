@@ -26,7 +26,7 @@ const matchComment = (comment:object, item:MyData) => {
   } else if (comment.operation === "EQ") {
     return item.comment === comment.value;
   } else if (comment.operation === "STARTS") {
-    return item.comment.startWith(comment.value);
+    return item.comment.startsWith(comment.value);
   } else if (comment.operation === "ENDS") {
     return item.comment.endsWith(comment.value);
   }
