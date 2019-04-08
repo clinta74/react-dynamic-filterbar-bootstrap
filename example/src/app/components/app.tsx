@@ -45,11 +45,11 @@ export class App extends React.Component<AppProps, AppState> {
             <section className="container">
                 <h2>Filter Bar Example</h2>
                 <div className="mb-4">
-                    <FilterBar<MyData> onFilterUpdate={this.onFilterUpdate} fql={fql} buttonClassName="btn">
-                        <Filters.StringFilter<MyData> field={['firstName', 'lastName']} label="Name" className="form-control" buttonClassName="btn btn-primary" />
-                        <Filters.StringFilter<MyData> field="comment" label="Comment" className="form-control" buttonClassName="btn btn-primary" showOperator />
-                        <Filters.NumericFilter<MyData> field="amount" label="Amount" className="form-control" />
-                        <Filters.SelectFilter<MyData> field="color" label="Colors" options={colorOptions} styles={customStyles} isMulti />
+                    <FilterBar onFilterUpdate={this.onFilterUpdate} fql={fql} buttonClassName="btn">
+                        <Filters.StringFilter field={['firstName', 'lastName']} label="Name" className="form-control" buttonClassName="btn btn-primary" />
+                        <Filters.StringFilter field="comment" label="Comment" className="form-control" buttonClassName="btn btn-primary" showOperator />
+                        <Filters.NumericFilter field="amount" label="Amount" className="form-control" />
+                        <Filters.SelectFilter field="color" label="Colors" options={colorOptions} styles={customStyles} isMulti />
                         <Filters.DateFilter field="birthday" label="Birthday" showOperator buttonClassName="btn btn-primary" shown/>
                     </FilterBar>
                 </div>
