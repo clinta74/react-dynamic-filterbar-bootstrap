@@ -5,6 +5,7 @@ import { customStyles } from '../../../../src/filter-bar/filters/select-filter';
 import { data } from './example-data';
 import { string, number } from 'prop-types';
 import { matchQuery, Query } from '../filter-helper-functions';
+import { moment } from 'moment';
 
 const colors = ['red', 'green', 'blue', 'black', 'pink', 'yellow', 'orange', 'indigo'];
 
@@ -33,6 +34,7 @@ export class App extends React.Component<AppProps, AppState> {
     }
 
     onFilterUpdate: ChangeFQLHander<MyData> = (fql) => {
+
         this.setState({ 
             fql,
             filterApplied: 'New Filters Not Run'
@@ -45,10 +47,11 @@ export class App extends React.Component<AppProps, AppState> {
                 name: undefined,
                 amount: undefined,
                 colors: [],
+                birthday: [],
                 comment: {
                     operation: string,
                     value: string
-                }
+                }                
             }
             let fqlQueries = this.state.fql.filterQueries;
 
@@ -61,9 +64,11 @@ export class App extends React.Component<AppProps, AppState> {
                     condensedQuery.amount = Number(query.filterItems[0].value) as number;
                 } else if (query.field === 'color') {
                     query.filterItems.forEach(color => condensedQuery.colors.push(color.value));
+                } else if (query.field === 'birthday') {
+                    condensedQuery.birthday = query.filterItems;
                 } else if (query.field === 'comment') {
                     condensedQuery.comment = query.filterItems[0];
-                }
+                } 
             }
 
               const matches = data.filter(
@@ -105,16 +110,14 @@ export class App extends React.Component<AppProps, AppState> {
                     {/* <button onClick={this.runFilters} fql={fql}> Old Filter </button> */}
                     <button onClick={this.runFilters2} fql={fql}> Run Filters </button>
                     <button onClick = {this.showAll} fql = {fql} title="Click to toggle the filters on or off">{this.state.filterApplied}</button>
-
-
                 </div>
 
                 <div>
                     <FlexTable.DataTable items={this.state.display}>
                         <FlexTable.BoundColumn<MyData> binding={item => item.firstName} headerText="First Name" className="col-2"/>
                         <FlexTable.BoundColumn<MyData> binding={item => item.lastName} headerText="Last Name" className="col-2"/>
-                        <FlexTable.BoundColumn<MyData> binding={item => item.birthday} headerText="Birthday" className="col-2"/></MyData>
-                        <FlexTable.BoundColumn<MyData> binding={item => item.comment} headerText="Comment" className="col-6"/>
+                        <FlexTable.BoundColumn<MyData> binding={item => item.birthday} headerText="Birthday" className="col-3"/>
+                        <FlexTable.BoundColumn<MyData> binding={item => item.comment} headerText="Comment" className="col-5"/>
                     </FlexTable.DataTable>
                 </div>
             </section>
