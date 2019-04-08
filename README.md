@@ -46,14 +46,22 @@ class App extends React.Component<AppProps, AppState> {
 ```
 
 ## Filter Options
-__Comon__
+### Filter Bar
+- onFilterUpdate - Event Handler called when any filters update the FQL.
+- fql - The FQL data to be displayed by the filters in the filter bar.
+- buttonClassName - Class to be applied the add filter dropdown of the filter bar.
+### Comon
 - field - The field the filter applies to.
 - label - The string used to represent the filter. Used in the add fitler and filter labels.
 - shown - The filter is added at page load with default values.
-__String and Number__
+### String and Number
 - showOperator - Show a dropdown to choose what operation to be applied.
-- buttonClassName
-- className
+- buttonClassName - Class to be applied the operartion dropdown of the filter.
+- className - Class applied the the input element.
+### Select (react-select)
+- isMulti - Make the select a multi-select box.
+- options - The options list provided as an array of { value: string, option: string }.
+- styles - Style object to pass to react-select control.
 
 ## Understanding Filter Query Language (FQL)
 FQL is designed to be a normalized definition of filters that can be applied to a dataset in a serializable format.  The format
@@ -66,19 +74,48 @@ object that can represent the WHERE clause of a SQL while keeping the informatio
     filterQueries: [ 
       logic: OR, // Logic used to join filter values on a property together and multiple filters.
       field: 'name', // The property or field to be filtered on. Can be array of fields or nested fields. ex ['user.firstName', 'user.lastName']
-      filterItems: [
+      filterItems: [{
         operation: EQ, // Logic used in the comparison operation.
         value: 'Jim' // The value to check against.
-      ]
+      }]
     ]
   }
 ```
-__SQL:__
+As SQL
+``` sql
 SELECT * FROM USER WHERE [name] = 'Jim';
+```
 
+``` javascript
+  FQL = { // The base FQL wrapping object.
+    logic: AND
+    filterQueries: [ 
+      logic: OR,
+      field: 'comment',
+      filterItems: [
+        operation: CONTAINS,
+        value: 'Test'
+      ]
+    ],
+    filterQueries: [ 
+      logic: OR,
+      field: 'color',
+      filterItems: [{
+        operation: EQ,
+        value: 'red'
+      }, {
+        operation: EQ,
+        value: 'blue'
+      }]
+    ]
+  }
+```
+As SQL
+``` sql
+SELECT * FROM USER WHERE [comment] LIKE '%Test%' AND ([color] = 'red' OR [color] = 'blue');
+```
 
-
-__Example:__
+#### Examples
 Text filter added for a name.
 - Input to type in string to filter on.
 - Optionally select filter logic.
@@ -88,3 +125,6 @@ Text filter added for a name.
   - Ends with
   - Does not contain
 - Optionally provide case sensitivity.  (Preferred case insensitivity.)
+
+## Custom Filters
+You can make your own custom filter. The filter is responsable for consuming its part of filter query and calling the event handler when that filter query has changed.  The filter is wrapped in a control that supplies a remove link.
