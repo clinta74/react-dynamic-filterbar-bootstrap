@@ -1,6 +1,5 @@
 import React from 'react';
-import { get, head, find, first, filter } from 'lodash';
-import classNames from 'classnames';
+import { filter } from 'lodash';
 import Select from 'react-select';
 
 
@@ -32,7 +31,7 @@ export class SelectFilter<Tobj> extends React.PureComponent<FilterBars.FilterPro
     getDefaultFilterQuery,
   }
 
-  onChangeValue: (values: ValueType<Option>, action: ActionMeta) => void = (values, action) => {
+  onChangeValue: (values: ValueType<Option>, action: ActionMeta) => void = (values) => {
     const { onFilterUpdate, field: field } = this.props;
     const filterItems = (values && Array.isArray(values)) ? values.map(value => ({
       operation: Operations.EQ,

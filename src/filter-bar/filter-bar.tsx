@@ -135,12 +135,10 @@ export class FilterBar<Tobj> extends React.Component<FilterBarProps<Tobj>, Filte
 
         return (
             <div className="filter-bar">
-                <div className="filter-bar-items">
-                    {filterItems}
-                    <div className={filterBarDropdownClassName}>
-                        <div className="filter-bar-select-container">
-                            <Dropdown label="Add Filter" items={dropdownItems} onChange={this.onAddFilter} {...this.props} />
-                        </div>
+                {filterItems}
+                <div className={filterBarDropdownClassName}>
+                    <div className="filter-bar-select-container">
+                        <Dropdown label="Add Filter" items={dropdownItems} onChange={this.onAddFilter} {...this.props} />
                     </div>
                 </div>
             </div>

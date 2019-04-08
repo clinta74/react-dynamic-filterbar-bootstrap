@@ -41,13 +41,6 @@ export const getDefaultFilterQuery = <Tobj extends {}>(field: FilterBars.FitlerQ
   }]
 });
 
-const Test:React.SFC<FilterBars.FilterProps<unknown, StringFilterProps>> = <Tobj extends {}, S>(props: FilterBars.FilterProps<Tobj, StringFilterProps>) => {
-  const {} = props;
-  return (
-    <div></div>
-  );
-}
-
 export class StringFilter<Tobj> extends React.Component<FilterBars.FilterProps<Tobj, StringFilterProps>> {
   public static defaultProps: FilterBars.IGetDefaultFilterQuery<unknown> = {
     getDefaultFilterQuery,
@@ -68,14 +61,14 @@ export class StringFilter<Tobj> extends React.Component<FilterBars.FilterProps<T
   }
 
   onChangeDropdown = (operation: Operations) => {
-    const { onFilterUpdate, field: field } = this.props;
+    const { onFilterUpdate, field, filterQuery} = this.props;
 
     onFilterUpdate && onFilterUpdate({
       field,
       logic: Logics.OR,
       filterItems: [{
         operation: operation,
-        value: this.getValue(this.props.filterQuery),
+        value: this.getValue(filterQuery),
       }]
     })
   }

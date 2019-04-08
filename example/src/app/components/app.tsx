@@ -1,7 +1,6 @@
 import React from 'react';
 import FlexTable from 'react-flexbox-table';
-import { filter, get } from 'lodash';
-import { FilterBars, Filters, FilterBar, ChangeFQLHander, Operations, Logics } from '../../../../src/index';
+import { FilterBars, Filters, FilterBar, ChangeFQLHander } from '../../../../src/index';
 import { customStyles } from '../../../../src/filter-bar/filters/select-filter';
 import { data } from './example-data';
 import { string, number } from 'prop-types';
@@ -85,7 +84,7 @@ export class App extends React.Component<AppProps, AppState> {
 
 
     render() {
-        const colorOptions = colors.map((c, i) => ({
+        const colorOptions = colors.map((c) => ({
             value: c,
             option: c,
         }));
@@ -96,11 +95,12 @@ export class App extends React.Component<AppProps, AppState> {
             <section className="container">
                 <h2>Filter Bar Example</h2>
                 <div className="mb-4">
-                    <FilterBar onFilterUpdate={this.onFilterUpdate} fql={fql} buttonClassName="btn">
-                        <Filters.StringFilter<MyData> field={['firstName', 'lastName']} label="Name" className="form-control" buttonClassName="btn btn-primary" shown />
+                    <FilterBar<MyData> onFilterUpdate={this.onFilterUpdate} fql={fql} buttonClassName="btn">
+                        <Filters.StringFilter<MyData> field={['firstName', 'lastName']} label="Name" className="form-control" buttonClassName="btn btn-primary" />
                         <Filters.StringFilter<MyData> field="comment" label="Comment" className="form-control" buttonClassName="btn btn-primary" showOperator />
                         <Filters.NumericFilter<MyData> field="amount" label="Amount" className="form-control" />
                         <Filters.SelectFilter<MyData> field="color" label="Colors" options={colorOptions} styles={customStyles} isMulti />
+                        <Filters.DateFilter field="birthday" label="Birthday" showOperator buttonClassName="btn btn-primary" shown/>
                     </FilterBar>
                     {/* <button onClick={this.runFilters} fql={fql}> Old Filter </button> */}
                     <button onClick={this.runFilters2} fql={fql}> Run Filters </button>
@@ -111,8 +111,9 @@ export class App extends React.Component<AppProps, AppState> {
 
                 <div>
                     <FlexTable.DataTable items={this.state.display}>
-                        <FlexTable.BoundColumn<MyData> binding={item => item.firstName} headerText="First Name" className="col-3"/>
-                        <FlexTable.BoundColumn<MyData> binding={item => item.lastName} headerText="Last Name" className="col-3"/>
+                        <FlexTable.BoundColumn<MyData> binding={item => item.firstName} headerText="First Name" className="col-2"/>
+                        <FlexTable.BoundColumn<MyData> binding={item => item.lastName} headerText="Last Name" className="col-2"/>
+                        <FlexTable.BoundColumn<MyData> binding={item => item.birthday} headerText="Birthday" className="col-2"/></MyData>
                         <FlexTable.BoundColumn<MyData> binding={item => item.comment} headerText="Comment" className="col-6"/>
                     </FlexTable.DataTable>
                 </div>
