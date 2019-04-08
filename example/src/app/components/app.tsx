@@ -63,7 +63,6 @@ export class App extends React.Component<AppProps, AppState> {
                 } else if (query.field === 'color') {
                     query.filterItems.forEach(color => condensedQuery.colors.push(color.value));
                 } else if (query.field === 'comment') {
-                    console.log('filter items', query.filterItems[0]);
                     condensedQuery.comment = query.filterItems[0];
                 }
             }
@@ -71,7 +70,6 @@ export class App extends React.Component<AppProps, AppState> {
               const matches = data.filter(
                   person => matchQuery(condensedQuery, person)
               )
-              console.log('condensed Query', condensedQuery);
               this.setState({
                 display: matches,
                 filterApplied: 'Filters Applied'
