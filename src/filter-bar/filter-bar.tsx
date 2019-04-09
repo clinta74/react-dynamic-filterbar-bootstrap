@@ -88,7 +88,7 @@ export class FilterBar<Tobj> extends React.Component<FilterBarProps<Tobj>, Filte
 
         if (!!fql) {
             fql.filterQueries = [...fql.filterQueries, filterQuery];
-            onFilterUpdate(fql);
+            onFilterUpdate({...fql});
         }
     }
 
