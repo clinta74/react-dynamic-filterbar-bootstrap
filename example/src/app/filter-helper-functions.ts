@@ -1,6 +1,7 @@
 import { MyData } from "./components/app";
 import { valueContainerCSS } from "react-select/lib/components/containers";
 import moment from 'moment';
+import _ from 'lodash';
 
 /** Returns true if strings are equal. Ignores case sensitivity. */
 const compareInsensitive = (a:string, b:string) => (a.toLowerCase()).includes(b.toLowerCase());
@@ -29,12 +30,17 @@ const compareDates = (dateStandard, dateIteration, operation) => {
   }
 }
 
+let dateCompare = {
+  LTE: (dateStandard, dateIteration) => moment(dateIteration).isBefore(dateStandard),
+  GTE: (dateStandard, dateIteration) => moment(dateIteration).isAfter(dateStandard)
+}
+
 /* Calls Compare dates based on filter query or queries selected */
  const matchBirthday = (birthday:object, item:MyData) => {
   if (birthday.length === 1) {
-    return compareDates(birthday[0].value, item.birthday, birthday[0].operation);
+    return dateCompare[birthday[0].operation](birthday[0].value, item.birthday);
   } else if (birthday.length > 1) {
-    return compareDates(birthday[0].value, item.birthday, birthday[0].operation) && compareDates(birthday[1].value, item.birthday, birthday[1].operation)
+    return dateCompare[birthday[0].operation](birthday[0].value, item.birthday) && dateCompare[birthday[1].operation](birthday[1].value, item.birthday);
   } 
 
 }
@@ -48,31 +54,19 @@ export const matchQuery = ( query:Query, item:MyData ) =>
   (query.comment && matchComment(query.comment, item));
 
 
-//Use a dictionary; an object - trans-language
-/*
-Map
-
-rather than if, create object: Operation iterators
-opIts = {
-  [Operations.CONTAINS]: (item: string, value: string) => item.toLowerCase().includes(value.toLowerCase()),
-
-}
-filterItem = filterQuery.filterItem[0];
-opIts[filterItem.operation](get(item, filterQuery.field, ''), filterItem.value);
-*/
-
 /* Returns true if item's comment matches the criteria of the query and operation */
 const matchComment = (comment:object, item:MyData) => {
-  return commentIterator[comment.operation](item.comment, comment.value);
+  return comment.operation && commentIterator[comment.operation](item.comment, comment.value);
 }
-
 
 let commentIterator = {
   CONTAINS: (item: string, value: string) => item.toLowerCase().includes(value.toLowerCase()),
   EQ: (item: string, value: string) => item.toLowerCase() === value.toLowerCase(),
   STARTS: (item: string, value: string) => item.toLowerCase().startsWith(value.toLowerCase()),
-  ENDS: (item: string, value: string) => item.toLowerCase().endsWith(value.toLowerCase())
+  ENDS: (item: string, value: string) => item.toLowerCase().endsWith(value.toLowerCase()),
+  NOOP: _.noop()
 }
+
 
 
 export interface Query {

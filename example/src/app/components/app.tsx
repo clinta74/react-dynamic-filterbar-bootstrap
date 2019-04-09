@@ -33,12 +33,19 @@ export class App extends React.Component<AppProps, AppState> {
         }
     }
 
-    onFilterUpdate: ChangeFQLHander<MyData> = (fql) => {
-
+    private onFilterUpdate: ChangeFQLHander<MyData> = (fql) => {
         this.setState({ 
             fql,
             filterApplied: 'New Filters Not Run'
         });
+    }
+
+    /** Clears out previously run filters */
+    private showAll: ChangeFQLHander<MyData> = (fql) => {
+        this.setState({
+            display: data,
+            filterApplied: 'No Filters Applied'
+        })
     }
 
         /** Cleaner code for runFilters function; executes currently selected filters on table; previous filter below */
@@ -49,8 +56,8 @@ export class App extends React.Component<AppProps, AppState> {
                 colors: [],
                 birthday: [],
                 comment: {
-                    operation: string,
-                    value: string
+                    operation: undefined,
+                    value: undefined
                 }                
             }
             let fqlQueries = this.state.fql.filterQueries;
@@ -65,6 +72,7 @@ export class App extends React.Component<AppProps, AppState> {
                 } else if (query.field === 'color') {
                     query.filterItems.forEach(color => condensedQuery.colors.push(color.value));
                 } else if (query.field === 'birthday') {
+                    console.log('BIRTHDAY QUERY', query);
                     condensedQuery.birthday = query.filterItems;
                 } else if (query.field === 'comment') {
                     condensedQuery.comment = query.filterItems[0];
@@ -79,14 +87,6 @@ export class App extends React.Component<AppProps, AppState> {
                 filterApplied: 'Filters Applied'
                 });    
         }
-
-        private showAll: ChangeFQLHander<MyData> = () => {
-            this.setState({
-                display: data,
-                filterApplied: 'No Filters Applied'
-            })
-        }
-
 
     render() {
         const colorOptions = colors.map((c) => ({
