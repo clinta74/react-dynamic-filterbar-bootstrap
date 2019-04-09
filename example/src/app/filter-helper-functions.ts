@@ -17,35 +17,10 @@ const matchAmount = (amount:number, item:MyData) => item.amount === amount;
 const matchColors = (colors:string[], item:MyData) => {
   // Field contains confusing name. Colors is not an array.
   const color = item.colors;
-
   return colors.map(c => c.toLowerCase()).includes(color);
 };
 
-const matchComment = (comment:object, item:MyData) => {
-  if (comment.operation === "CONTAINS") {
-      return item.comment.includes(comment.value);
-  } else if (comment.operation === "EQ") {
-    return item.comment === comment.value;
-  } else if (comment.operation === "STARTS") {
-    return item.comment.startsWith(comment.value);
-  } else if (comment.operation === "ENDS") {
-    return item.comment.endsWith(comment.value);
-  }
-}
-
-//Use a dictionary; an object - trans-language
-/*
-Map
-
-rather than if, create object: Operation iterators
-opIts = {
-  [Operations.CONTAINS]: (item: string, value: string) => item.toLowerCase().includes(value.toLowerCase()),
-
-}
-filterItem = filterQuery.filterItem[0];
-opIts[filterItem.operation](get(item, filterQuery.field, ''), filterItem.value);
-*/
-
+/* Returns true if item's birthday is correctly relative (greater than or less than) to the date selected */
 const compareDates = (dateStandard, dateIteration, operation) => {
   if (operation === "LTE") {
     return moment(dateIteration).isBefore(moment(dateStandard));
@@ -54,6 +29,7 @@ const compareDates = (dateStandard, dateIteration, operation) => {
   }
 }
 
+/* Calls Compare dates based on filter query or queries selected */
  const matchBirthday = (birthday:object, item:MyData) => {
   if (birthday.length === 1) {
     return compareDates(birthday[0].value, item.birthday, birthday[0].operation);
@@ -71,6 +47,32 @@ export const matchQuery = ( query:Query, item:MyData ) =>
   (query.birthday && matchBirthday(query.birthday, item)) ||
   (query.comment && matchComment(query.comment, item));
 
+
+//Use a dictionary; an object - trans-language
+/*
+Map
+
+rather than if, create object: Operation iterators
+opIts = {
+  [Operations.CONTAINS]: (item: string, value: string) => item.toLowerCase().includes(value.toLowerCase()),
+
+}
+filterItem = filterQuery.filterItem[0];
+opIts[filterItem.operation](get(item, filterQuery.field, ''), filterItem.value);
+*/
+
+/* Returns true if item's comment matches the criteria of the query and operation */
+const matchComment = (comment:object, item:MyData) => {
+  return commentIterator[comment.operation](item.comment, comment.value);
+}
+
+
+let commentIterator = {
+  CONTAINS: (item: string, value: string) => item.toLowerCase().includes(value.toLowerCase()),
+  EQ: (item: string, value: string) => item.toLowerCase() === value.toLowerCase(),
+  STARTS: (item: string, value: string) => item.toLowerCase().startsWith(value.toLowerCase()),
+  ENDS: (item: string, value: string) => item.toLowerCase().endsWith(value.toLowerCase())
+}
 
 
 export interface Query {
