@@ -12,30 +12,33 @@ const matchName = (name:string, item:MyData) =>
   compareInsensitive(item.lastName, name);
 
 /** Returns true if item contains amount provided. */
-const matchAmount = (amount:number, item:MyData) => item.amount === amount;
+// const matchAmount = (amount:number, item:MyData) => item.amount === amount;
+const matchAmount = (amount:Object, item:MyData) => numberCompare[amount.operation](Number(amount.value), Number(item.amount));
+
+let numberCompare = {
+  CONTAINS: (selection: number, iteration: number) => selection === Number(iteration),
+  LT: (selection: number, iteration: number) => selection < iteration,
+  GT: (selection: number, iteration: number) => selection < iteration,
+  NEQ: (selection: number, iteration: number) => selection !== iteration, 
+  GTE: (selection: number, iteration: number) => selection >= iteration,
+  LTE: (selection: number, iteration: number) => selection <= iteration 
+}
+
 
 /** Returns true if item contains one of the provided colors. */
 const matchColors = (colors:string[], item:MyData) => {
-  // Field contains confusing name. Colors is not an array.
   const color = item.colors;
   return colors.map(c => c.toLowerCase()).includes(color);
 };
 
-/* Returns true if item's birthday is correctly relative (greater than or less than) to the date selected */
-const compareDates = (dateStandard, dateIteration, operation) => {
-  if (operation === "LTE") {
-    return moment(dateIteration).isBefore(moment(dateStandard));
-  } else if (operation === "GTE") {
-    return moment(dateIteration).isAfter(moment(dateStandard));
-  }
-}
 
+/* Returns true if item's birthday is correctly relative (greater than or less than) to the date selected */
 let dateCompare = {
   LTE: (dateStandard, dateIteration) => moment(dateIteration).isBefore(dateStandard),
   GTE: (dateStandard, dateIteration) => moment(dateIteration).isAfter(dateStandard)
 }
 
-/* Calls Compare dates based on filter query or queries selected */
+/** Calls Compare dateCompare itartor based on filter query or queries selected */
  const matchBirthday = (birthday:object, item:MyData) => {
   if (birthday.length === 1) {
     return dateCompare[birthday[0].operation](birthday[0].value, item.birthday);
@@ -45,6 +48,19 @@ let dateCompare = {
 
 }
 
+/* Returns true if item's comment matches the criteria of the query and operation */
+const matchComment = (comment:object, item:MyData) => {
+  return stringIterator[comment.operation](item.comment, comment.value);
+}
+
+let stringIterator = {
+  CONTAINS: (item: string, value: string) => item.toLowerCase().includes(value.toLowerCase()),
+  EQ: (item: string, value: string) => item.toLowerCase() === value.toLowerCase(),
+  STARTS: (item: string, value: string) => item.toLowerCase().startsWith(value.toLowerCase()),
+  ENDS: (item: string, value: string) => item.toLowerCase().endsWith(value.toLowerCase()),
+  NOOP: _.noop()
+}
+
 /** Returns true if item matches any of the query parameters. */
 export const matchQuery = ( query:Query, item:MyData ) =>
   (query.name && matchName(query.name, item)) ||
@@ -52,23 +68,6 @@ export const matchQuery = ( query:Query, item:MyData ) =>
   (query.colors && matchColors(query.colors, item)) ||
   (query.birthday && matchBirthday(query.birthday, item)) ||
   (query.comment && matchComment(query.comment, item));
-
-
-/* Returns true if item's comment matches the criteria of the query and operation */
-const matchComment = (comment:object, item:MyData) => {
-  console.log('iteration', commentIteratorMap.get((comment.operation), (item.comment, comment.value));
-  console.log('iteration2', commentIteratorMap.get((comment.operation));
-
-  return commentIterator[comment.operation](item.comment, comment.value);
-}
-
-let commentIterator = {
-  CONTAINS: (item: string, value: string) => item.toLowerCase().includes(value.toLowerCase()),
-  EQ: (item: string, value: string) => item.toLowerCase() === value.toLowerCase(),
-  STARTS: (item: string, value: string) => item.toLowerCase().startsWith(value.toLowerCase()),
-  ENDS: (item: string, value: string) => item.toLowerCase().endsWith(value.toLowerCase()),
-  NOOP: _.noop()
-}
 
 export interface Query {
   name?: string,

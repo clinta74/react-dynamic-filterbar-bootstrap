@@ -58,10 +58,11 @@ export class App extends React.Component<AppProps, AppState> {
                 comment: undefined         
             }
             let fqlQueries = this.state.fql.filterQueries;
+            console.log('FQL: ', fqlQueries);
 
             let fqlIterator = {
                 name: (filterItems: Array )=> { condensedQuery.name = filterItems[0].value as string },
-                amount: (filterItems: Array )=> { condensedQuery.amount = Number(filterItems[0].value as number) },
+                amount: (filterItems: Array )=> { condensedQuery.amount = filterItems[0] as Object) },
                 color: (filterItems: Array )=> { filterItems.forEach( color => condensedQuery.colors.push(color.value)) },
                 comment: (filterItems: Array ) => { condensedQuery.comment = filterItems[0] },
                 birthday: ( filterItems: Array ) => { condensedQuery.birthday = filterItems }
@@ -94,9 +95,9 @@ export class App extends React.Component<AppProps, AppState> {
                 <h2>Filter Bar Example</h2>
                 <div className="mb-4">
                     <FilterBar<MyData> onFilterUpdate={this.onFilterUpdate} fql={fql} buttonClassName="btn">
-                        <Filters.StringFilter<MyData> field="name" label="Name" className="form-control" buttonClassName="btn btn-primary" />
+                        <Filters.StringFilter<MyData> field="name" label="Name" className="form-control" buttonClassName="btn btn-primary" showOperator />
                         <Filters.StringFilter<MyData> field="comment" label="Comment" className="form-control" buttonClassName="btn btn-primary" showOperator />
-                        <Filters.NumericFilter<MyData> field="amount" label="Amount" className="form-control" />
+                        <Filters.NumericFilter<MyData> field="amount" label="Amount" className="form-control" showOperator/>
                         <Filters.SelectFilter<MyData> field="color" label="Colors" options={colorOptions} styles={customStyles} isMulti />
                         <Filters.DateFilter field="birthday" label="Birthday" showOperator buttonClassName="btn btn-primary" shown/>
                     </FilterBar>
