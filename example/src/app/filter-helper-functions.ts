@@ -56,7 +56,10 @@ export const matchQuery = ( query:Query, item:MyData ) =>
 
 /* Returns true if item's comment matches the criteria of the query and operation */
 const matchComment = (comment:object, item:MyData) => {
-  return comment.operation && commentIterator[comment.operation](item.comment, comment.value);
+  console.log('iteration', commentIteratorMap.get((comment.operation), (item.comment, comment.value));
+  console.log('iteration2', commentIteratorMap.get((comment.operation));
+
+  return commentIterator[comment.operation](item.comment, comment.value);
 }
 
 let commentIterator = {
@@ -66,8 +69,6 @@ let commentIterator = {
   ENDS: (item: string, value: string) => item.toLowerCase().endsWith(value.toLowerCase()),
   NOOP: _.noop()
 }
-
-
 
 export interface Query {
   name?: string,
@@ -79,3 +80,4 @@ export interface Query {
     value: string
   }
 }
+

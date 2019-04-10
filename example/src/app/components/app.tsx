@@ -55,30 +55,23 @@ export class App extends React.Component<AppProps, AppState> {
                 amount: undefined,
                 colors: [],
                 birthday: [],
-                comment: {
-                    operation: undefined,
-                    value: undefined
-                }                
+                comment: undefined         
             }
             let fqlQueries = this.state.fql.filterQueries;
 
+            let fqlIterator = {
+                name: (filterItems: Array )=> { condensedQuery.name = filterItems[0].value as string },
+                amount: (filterItems: Array )=> { condensedQuery.amount = Number(filterItems[0].value as number) },
+                color: (filterItems: Array )=> { filterItems.forEach( color => condensedQuery.colors.push(color.value)) },
+                comment: (filterItems: Array ) => { condensedQuery.comment = filterItems[0] },
+                birthday: ( filterItems: Array ) => { condensedQuery.birthday = filterItems }
+              }
+
             //Iterates through the selected filters and adds them to condensedQuery
             fqlQueries.forEach(query => {
-                if (Array.isArray(query.field) && query.filterItems[0].value !== '') {
-                    const searched = query.filterItems[0].value as string;
-                    condensedQuery.name = searched.toLowerCase();
-                } else if (query.field === 'amount') {
-                    condensedQuery.amount = Number(query.filterItems[0].value) as number;
-                } else if (query.field === 'color') {
-                    query.filterItems.forEach(color => condensedQuery.colors.push(color.value));
-                } else if (query.field === 'birthday') {
-                    console.log('BIRTHDAY QUERY', query);
-                    condensedQuery.birthday = query.filterItems;
-                } else if (query.field === 'comment') {
-                    condensedQuery.comment = query.filterItems[0];
-                } 
+                fqlIterator[query.field](query.filterItems);
             }
-
+              
               const matches = data.filter(
                   person => matchQuery(condensedQuery, person)
               )
@@ -101,7 +94,7 @@ export class App extends React.Component<AppProps, AppState> {
                 <h2>Filter Bar Example</h2>
                 <div className="mb-4">
                     <FilterBar<MyData> onFilterUpdate={this.onFilterUpdate} fql={fql} buttonClassName="btn">
-                        <Filters.StringFilter<MyData> field={['firstName', 'lastName']} label="Name" className="form-control" buttonClassName="btn btn-primary" />
+                        <Filters.StringFilter<MyData> field="name" label="Name" className="form-control" buttonClassName="btn btn-primary" />
                         <Filters.StringFilter<MyData> field="comment" label="Comment" className="form-control" buttonClassName="btn btn-primary" showOperator />
                         <Filters.NumericFilter<MyData> field="amount" label="Amount" className="form-control" />
                         <Filters.SelectFilter<MyData> field="color" label="Colors" options={colorOptions} styles={customStyles} isMulti />
@@ -120,6 +113,10 @@ export class App extends React.Component<AppProps, AppState> {
                         <FlexTable.BoundColumn<MyData> binding={item => item.comment} headerText="Comment" className="col-5"/>
                     </FlexTable.DataTable>
                 </div>
+                <div>
+
+                </div>
+
             </section>
         );
     }
