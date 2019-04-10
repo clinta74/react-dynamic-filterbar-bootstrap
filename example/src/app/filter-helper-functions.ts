@@ -39,17 +39,13 @@ let dateCompareIterator = {
 const compareInsensitive = (a:string, b:string) => (a.toLowerCase()).includes(b.toLowerCase());
 
 /** Returns true if item contains name provided. */
-const matchName = (name:string, item:MyData) => {
-  console.log('NAME: ', name.value, name.operation);
-  return stringIterator[name.operation](item.firstName, name.value) ||
+const matchName = (name:string, item:MyData) => 
+  stringIterator[name.operation](item.firstName, name.value) ||
   stringIterator[name.operation](item.lastName, name.value);
-}
   
 
 /* Returns true if item's comment matches the criteria of the query and operation */
-const matchComment = (comment:object, item:MyData) => {
-  return stringIterator[comment.operation](item.comment, comment.value);
-}
+const matchComment = (comment:object, item:MyData) => stringIterator[comment.operation](item.comment, comment.value);
 
 let stringIterator = {
   CONTAINS: (item: string, value: string) => item.toLowerCase().includes(value.toLowerCase()),
