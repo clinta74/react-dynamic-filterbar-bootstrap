@@ -61,7 +61,7 @@ export class App extends React.Component<AppProps, AppState> {
             console.log('FQL: ', fqlQueries);
 
             let fqlIterator = {
-                name: (filterItems: Array )=> { condensedQuery.name = filterItems[0].value as string },
+                name: (filterItems: Array )=> { condensedQuery.name = filterItems[0] as Object },
                 amount: (filterItems: Array )=> { condensedQuery.amount = filterItems[0] as Object) },
                 color: (filterItems: Array )=> { filterItems.forEach( color => condensedQuery.colors.push(color.value)) },
                 comment: (filterItems: Array ) => { condensedQuery.comment = filterItems[0] },

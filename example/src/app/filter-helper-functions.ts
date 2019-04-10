@@ -3,16 +3,7 @@ import { valueContainerCSS } from "react-select/lib/components/containers";
 import moment from 'moment';
 import _ from 'lodash';
 
-/** Returns true if strings are equal. Ignores case sensitivity. */
-const compareInsensitive = (a:string, b:string) => (a.toLowerCase()).includes(b.toLowerCase());
-
-/** Returns true if item contains name provided. */
-const matchName = (name:string, item:MyData) =>
-  compareInsensitive(item.firstName, name) ||
-  compareInsensitive(item.lastName, name);
-
 /** Returns true if item contains amount provided. */
-// const matchAmount = (amount:number, item:MyData) => item.amount === amount;
 const matchAmount = (amount:Object, item:MyData) => numberCompare[amount.operation](Number(amount.value), Number(item.amount));
 
 let numberCompare = {
@@ -24,29 +15,36 @@ let numberCompare = {
   LTE: (selection: number, iteration: number) => selection <= iteration 
 }
 
-
 /** Returns true if item contains one of the provided colors. */
 const matchColors = (colors:string[], item:MyData) => {
-  const color = item.colors;
-  return colors.map(c => c.toLowerCase()).includes(color);
+  const singleColor = item.colors;
+  return colors.map(c => c.toLowerCase()).includes(singleColor);
 };
 
-
-/* Returns true if item's birthday is correctly relative (greater than or less than) to the date selected */
-let dateCompare = {
-  LTE: (dateStandard, dateIteration) => moment(dateIteration).isBefore(dateStandard),
-  GTE: (dateStandard, dateIteration) => moment(dateIteration).isAfter(dateStandard)
-}
-
-/** Calls Compare dateCompare itartor based on filter query or queries selected */
+/** Calls dateCompareIterator based on filter query or queries selected */
  const matchBirthday = (birthday:object, item:MyData) => {
   if (birthday.length === 1) {
-    return dateCompare[birthday[0].operation](birthday[0].value, item.birthday);
+    return dateCompareIterator[birthday[0].operation](birthday[0].value, item.birthday);
   } else if (birthday.length > 1) {
-    return dateCompare[birthday[0].operation](birthday[0].value, item.birthday) && dateCompare[birthday[1].operation](birthday[1].value, item.birthday);
+    return dateCompareIterator[birthday[0].operation](birthday[0].value, item.birthday) && dateCompareIterator[birthday[1].operation](birthday[1].value, item.birthday);
   } 
-
 }
+
+let dateCompareIterator = {
+  LTE: (dateStandard: string, dateIteration: string) => moment(dateIteration).isBefore(dateStandard),
+  GTE: (dateStandard: string, dateIteration:string) => moment(dateIteration).isAfter(dateStandard)
+}
+
+/** Returns true if strings are equal. Ignores case sensitivity. */
+const compareInsensitive = (a:string, b:string) => (a.toLowerCase()).includes(b.toLowerCase());
+
+/** Returns true if item contains name provided. */
+const matchName = (name:string, item:MyData) => {
+  console.log('NAME: ', name.value, name.operation);
+  return stringIterator[name.operation](item.firstName, name.value) ||
+  stringIterator[name.operation](item.lastName, name.value);
+}
+  
 
 /* Returns true if item's comment matches the criteria of the query and operation */
 const matchComment = (comment:object, item:MyData) => {
