@@ -64,7 +64,7 @@ export class App extends React.Component<AppProps, AppState> {
             color: (filterItems: Array )=> { filterItems.forEach( color => condensedQuery.colors.push(color.value)) },
             comment: (filterItems: Array ) => { condensedQuery.comment = filterItems[0] },
             birthday: ( filterItems: Array ) => { condensedQuery.birthday = filterItems }
-            }
+        }
 
         //Iterates through the selected filters and adds them to condensedQuery
         fqlQueries.forEach(query => {
@@ -100,7 +100,6 @@ export class App extends React.Component<AppProps, AppState> {
                         <Filters.SelectFilter<MyData> field="color" label="Colors" options={colorOptions} styles={customStyles} isMulti />
                         <Filters.DateFilter field="birthday" label="Birthday" showOperator buttonClassName="btn btn-primary" shown/>
                     </FilterBar>
-                    {/* <button onClick={this.runFilters} fql={fql}> Old Filter </button> */}
                     <button onClick={this.runFilters} fql={fql}> Run Filters </button>
                     <button onClick = {this.showAll} fql = {fql} title="Click to toggle the filters on or off">{this.state.filterApplied}</button>
                 </div>

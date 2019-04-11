@@ -2,6 +2,7 @@ import { MyData } from "./components/app";
 import { valueContainerCSS } from "react-select/lib/components/containers";
 import moment from 'moment';
 import _ from 'lodash';
+import { Operations, Logics } from "../../../src";
 
 /** Returns true if item contains amount provided. */
 const matchAmount = (amount:Object, item:MyData) => numberCompare[amount.operation](Number(amount.value), Number(item.amount));
@@ -54,6 +55,30 @@ let stringIterator = {
   STARTS: (item: string, value: string) => item.toLowerCase().startsWith(value.toLowerCase()),
   ENDS: (item: string, value: string) => item.toLowerCase().endsWith(value.toLowerCase()),
   NOOP: _.noop()
+}
+
+const fieldToIteratorMapper = {
+  name: stringIterator,
+  comment: stringIterator,
+  amount: numberCompare,
+  birthday: dateCompareIterator,
+  color: matchColors
+}
+
+const handleFilterQuery = ({field, logic, filterItems, items}) => {
+  if(logic == Logics.OR) {
+    return filterItems.map(filterItem => items.filter(item => 
+      fieldToIteratorMapper[field][filterItem.operation](item, filterItem.value))
+  } else {
+    const reducer = (accumlator, currentValue) => {
+
+    };
+    let _items = [...items];
+    filterItems.forEach(filterItem => {
+      _items = [..._items.filter(item => 
+        fieldToIteratorMapper[field][filterItem.operation](item, filterItem.value))]
+    });
+  }
 }
 
 /** Returns true if item matches any of the query parameters. */
