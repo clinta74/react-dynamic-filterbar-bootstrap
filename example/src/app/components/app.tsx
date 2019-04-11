@@ -4,7 +4,8 @@ import { FilterBars, Filters, FilterBar, ChangeFQLHander } from '../../../../src
 import { customStyles } from '../../../../src/filter-bar/filters/select-filter';
 import { data } from './example-data';
 import { string, number } from 'prop-types';
-import { matchQuery, Query } from '../filter-helper-functions';
+import { matchQuery, Query, filterIt, fieldToIteratorMapper } from '../filter-helper-functions';
+import moment from 'moment';
 
 const colors = ['red', 'green', 'blue', 'black', 'pink', 'yellow', 'orange', 'indigo'];
 
@@ -57,29 +58,42 @@ export class App extends React.Component<AppProps, AppState> {
             comment: undefined         
         }
         let fqlQueries = this.state.fql.filterQueries;
+        let fqlCopy = this.state.fql;
+        // console.log('FILTER QUERIES: ', fqlQueries);
+        console.log("ALL OF FQL", fqlCopy);
 
-        let fqlIterator = {
-            name: (filterItems: Array )=> { condensedQuery.name = filterItems[0] as Object },
-            amount: (filterItems: Array )=> { condensedQuery.amount = filterItems[0] as Object) },
-            color: (filterItems: Array )=> { filterItems.forEach( color => condensedQuery.colors.push(color.value)) },
-            comment: (filterItems: Array ) => { condensedQuery.comment = filterItems[0] },
-            birthday: ( filterItems: Array ) => { condensedQuery.birthday = filterItems }
-        }
-
-        //Iterates through the selected filters and adds them to condensedQuery
-        fqlQueries.forEach(query => {
-            fqlIterator[query.field](query.filterItems);
-        }
-            
-        const matches = data.filter(
-            person => matchQuery(condensedQuery, person)
-        )
+        const filteredData = filterIt(data, fieldToIteratorMapper, fqlCopy);
+        console.log('FILTERED DATA: ', filteredData);
 
         this.setState({
-        display: matches,
-        filterApplied: 'Filters Applied'
-        });    
+            display: filteredData,
+            filterApplied: 'Filters Applied'
+            });
+
     }
+
+
+        // let fqlIterator = {
+        //     name: (filterItems: Array )=> { condensedQuery.name = filterItems[0] as Object },
+        //     amount: (filterItems: Array )=> { condensedQuery.amount = filterItems[0] as Object) },
+        //     color: (filterItems: Array )=> { filterItems.forEach( color => condensedQuery.colors.push(color.value)) },
+        //     comment: (filterItems: Array ) => { condensedQuery.comment = filterItems[0] },
+        //     birthday: ( filterItems: Array ) => { condensedQuery.birthday = filterItems }
+        // }
+
+        // //Iterates through the selected filters and adds them to condensedQuery
+        // fqlQueries.forEach(query => {
+        //     fqlIterator[query.field](query.filterItems);
+        // }
+            
+        // const matches = data.filter(
+        //     person => matchQuery(condensedQuery, person)
+        // )
+
+        // this.setState({
+        // display: matches,
+        // filterApplied: 'Filters Applied'
+        // });    
 
     render() {
         const colorOptions = colors.map((c) => ({
@@ -108,7 +122,7 @@ export class App extends React.Component<AppProps, AppState> {
                     <FlexTable.DataTable items={this.state.display}>
                         <FlexTable.BoundColumn<MyData> binding={item => item.firstName} headerText="First Name" className="col-2"/>
                         <FlexTable.BoundColumn<MyData> binding={item => item.lastName} headerText="Last Name" className="col-2"/>
-                        <FlexTable.BoundColumn<MyData> binding={item => item.birthday} headerText="Birthday" className="col-3"/>
+                        <FlexTable.BoundColumn<MyData> binding={item => item.birthday} headerText="Birthday" className="col-3" formatter = {item=> moment(item).format('L')}/>
                         <FlexTable.BoundColumn<MyData> binding={item => item.comment} headerText="Comment" className="col-5"/>
                     </FlexTable.DataTable>
                 </div>
