@@ -12,7 +12,8 @@ let numberCompare = {
   GT: (selection: number, iteration: number) => selection < iteration,
   NEQ: (selection: number, iteration: number) => selection !== iteration, 
   GTE: (selection: number, iteration: number) => selection >= iteration,
-  LTE: (selection: number, iteration: number) => selection <= iteration 
+  LTE: (selection: number, iteration: number) => selection <= iteration,
+  NOOP: _.noop() 
 }
 
 /** Returns true if item contains one of the provided colors. */
@@ -22,7 +23,7 @@ const matchColors = (colors:string[], item:MyData) => {
 };
 
 /** Calls dateCompareIterator based on filter query or queries selected */
- const matchBirthday = (birthday:object, item:MyData) => {
+ const matchBirthday = (birthday:Array, item:MyData) => {
   if (birthday.length === 1) {
     return dateCompareIterator[birthday[0].operation](birthday[0].value, item.birthday);
   } else if (birthday.length > 1) {
