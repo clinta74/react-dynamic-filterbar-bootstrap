@@ -4,7 +4,7 @@ import { FilterBars, Filters, FilterBar, ChangeFQLHander } from '../../../src/in
 import { customStyles } from '../../../src/filter-bar/filters/select-filter';
 import { data } from './example-data';
 import { filterIt, fieldToIteratorMapper } from '../filter-helper-functions';
-import { moment, MomentInputObject } from 'moment';
+import moment  from 'moment';
 
 const colors = ['red', 'green', 'blue', 'black', 'pink', 'yellow', 'orange', 'indigo'];
 
