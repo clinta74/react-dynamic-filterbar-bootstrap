@@ -59,7 +59,6 @@ export class App extends React.Component<AppProps, AppState> {
         }
         let fqlQueries = this.state.fql.filterQueries;
         let fqlCopy = this.state.fql;
-        // console.log('FILTER QUERIES: ', fqlQueries);
         console.log("ALL OF FQL", fqlCopy);
 
         const filteredData = filterIt(data, fieldToIteratorMapper, fqlCopy);
@@ -71,29 +70,7 @@ export class App extends React.Component<AppProps, AppState> {
             });
 
     }
-
-
-        // let fqlIterator = {
-        //     name: (filterItems: Array )=> { condensedQuery.name = filterItems[0] as Object },
-        //     amount: (filterItems: Array )=> { condensedQuery.amount = filterItems[0] as Object) },
-        //     color: (filterItems: Array )=> { filterItems.forEach( color => condensedQuery.colors.push(color.value)) },
-        //     comment: (filterItems: Array ) => { condensedQuery.comment = filterItems[0] },
-        //     birthday: ( filterItems: Array ) => { condensedQuery.birthday = filterItems }
-        // }
-
-        // //Iterates through the selected filters and adds them to condensedQuery
-        // fqlQueries.forEach(query => {
-        //     fqlIterator[query.field](query.filterItems);
-        // }
-            
-        // const matches = data.filter(
-        //     person => matchQuery(condensedQuery, person)
-        // )
-
-        // this.setState({
-        // display: matches,
-        // filterApplied: 'Filters Applied'
-        // });    
+ 
 
     render() {
         const colorOptions = colors.map((c) => ({
