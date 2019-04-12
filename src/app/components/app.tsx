@@ -1,7 +1,7 @@
 import React from 'react';
 import FlexTable from 'react-flexbox-table';
-import { FilterBars, Filters, FilterBar, ChangeFQLHander } from '../../../../src/index';
-import { customStyles } from '../../../../src/filter-bar/filters/select-filter';
+import { FilterBars, Filters, FilterBar, ChangeFQLHander } from '../../../src/index';
+import { customStyles } from '../../../src/filter-bar/filters/select-filter';
 import { data } from './example-data';
 import { filterIt, fieldToIteratorMapper } from '../filter-helper-functions';
 import moment from 'moment';

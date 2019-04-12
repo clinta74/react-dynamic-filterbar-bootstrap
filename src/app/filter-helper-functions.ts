@@ -2,8 +2,8 @@ import { MyData } from "./components/app";
 import { valueContainerCSS } from "react-select/lib/components/containers";
 import moment from 'moment';
 import { get, noop } from 'lodash';
-import { IOperationsObj, Logics } from "../../../src";
-import { FilterBars } from '../../../src';
+import { IOperationsObj, Logics } from "../../src";
+import { FilterBars } from '../../src';
 import { any, bool } from "prop-types";
 
 type Iterator<T> = (item: T, value: T) => boolean;
