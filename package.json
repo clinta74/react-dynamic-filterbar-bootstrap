@@ -1,6 +1,6 @@
 {
   "name": "react-dynamic-filterbar",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "A filter bar to host dynamic filters using react.",
   "main": "lib/index.js",
   "peerDependencies": {
