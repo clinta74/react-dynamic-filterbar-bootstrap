@@ -111,7 +111,7 @@ export class App extends React.Component<AppProps, AppState> {
                         <Filters.StringFilter<MyData> field="name" label="Name" className="form-control" buttonClassName="btn btn-primary" showOperator />
                         <Filters.StringFilter<MyData> field="comment" label="Comment" className="form-control" buttonClassName="btn btn-primary" showOperator />
                         <Filters.NumericFilter<MyData> field="amount" label="Amount" className="form-control" showOperator/>
-                        <Filters.SelectFilter<MyData> field="color" label="Colors" options={colorOptions} styles={customStyles} isMulti />
+                        <Filters.SelectFilter<MyData> field="colors" label="Colors" options={colorOptions} styles={customStyles} isMulti />
                         <Filters.DateFilter field="birthday" label="Birthday" showOperator buttonClassName="btn btn-primary" shown/>
                     </FilterBar>
                     <button onClick={this.runFilters} fql={fql}> Run Filters </button>
