@@ -89,7 +89,7 @@ export class App extends React.Component<AppProps, AppState> {
                     <FlexTable.DataTable items={this.state.display}>
                         <FlexTable.BoundColumn<MyData> binding={item => item.firstName} headerText="First Name" className="col-2" />
                         <FlexTable.BoundColumn<MyData> binding={item => item.lastName} headerText="Last Name" className="col-2" />
-                        <FlexTable.BoundColumn<MyData> binding={item => item.birthday} headerText="Birthday" className="col-3" formatter={item => moment(item).format('L')} />
+                        <FlexTable.BoundColumn<MyData> binding={item => item.birthday} headerText="Birthday" className="col-3" formatter={value => moment(value).format('L')} />
                         <FlexTable.BoundColumn<MyData> binding={item => item.comment} headerText="Comment" className="col-5" />
                     </FlexTable.DataTable>
                 </div>
