@@ -1,13 +1,14 @@
 import { FilterBar, Filters, ChangeFQLHander }  from './filter-bar';
-import { Operations, Logics } from './enums';
+import { Operations, Logics, IOperationsObj } from './enums';
 import { GetDefaultFilterQueryHandler, RemoveFilterHandler } from './filter-bar/filter-bar';
 
 export declare namespace FilterBars {
   type FilterUpdateHandler<Tobj> = (filterQuery: FilterQuery<Tobj>) => void;
+  type FilterItemValue<Tobj> = (Tobj[keyof Tobj] | unknown)
 
   type FilterItem<Tobj> = {
     operation: Operations,
-    value: (Tobj[keyof Tobj] | unknown),
+    value: FilterItemValue<Tobj>,
   }
 
   type FitlerQueryField<Tobj> = (keyof Tobj) | string | (keyof Tobj)[] | string[];
@@ -38,6 +39,7 @@ export declare namespace FilterBars {
 }
 
 export {
+  IOperationsObj,
   Operations,
   Logics,
   FilterBar,
