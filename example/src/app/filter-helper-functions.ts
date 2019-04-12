@@ -59,11 +59,6 @@ function handleFilterItems<Tobj> (params: FilterBars.FilterQuery<Tobj>, mapper: 
   const arrayFn = logic === Logics.OR ? Array.prototype.some : Array.prototype.every;
 
   return (item: Tobj) => arrayFn.call(filterItems, (filterItem: FilterBars.FilterItem<Tobj>) => {
-    console.log('ITEM: ', item, 'FIELD: ', field);
-    console.log('ARRAY FN: ', arrayFn);
-    console.log('Mapper FIELD: ', mapper[field])
-    console.log('GET: ', get(item, field));
-    console.log('RESULT ', mapper[field][filterItem.operation](get(item, field), filterItem.value));
     return mapper[field][filterItem.operation](get(item, field), filterItem.value);
   });
 }

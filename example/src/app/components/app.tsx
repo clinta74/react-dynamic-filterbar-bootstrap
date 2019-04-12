@@ -4,7 +4,7 @@ import { FilterBars, Filters, FilterBar, ChangeFQLHander } from '../../../../src
 import { customStyles } from '../../../../src/filter-bar/filters/select-filter';
 import { data } from './example-data';
 import { string, number } from 'prop-types';
-import { matchQuery, Query, filterIt, fieldToIteratorMapper } from '../filter-helper-functions';
+import { Query, filterIt, fieldToIteratorMapper } from '../filter-helper-functions';
 import moment from 'moment';
 
 const colors = ['red', 'green', 'blue', 'black', 'pink', 'yellow', 'orange', 'indigo'];
@@ -21,6 +21,8 @@ export type MyData = {
 type AppProps = {};
 type AppState = {
     fql?: FilterBars.FilterQueryLanguage<MyData>,
+    display: MyData[],
+    filterApplied: string,
 }
 
 export class App extends React.Component<AppProps, AppState> {
@@ -41,7 +43,7 @@ export class App extends React.Component<AppProps, AppState> {
     }
 
     /** Clears out previously run filters */
-    private showAll: ChangeFQLHander<MyData> = (fql) => {
+    private showAll: React.MouseEventHandler<HTMLButtonElement> = () => {
         this.setState({
             display: data,
             filterApplied: 'No Filters Applied'
@@ -49,29 +51,18 @@ export class App extends React.Component<AppProps, AppState> {
     }
 
     /** Executes currently selected filters on data set */
-    private runFilters: ChangeFQLHander<MyData> = (fql) => {
-        let condensedQuery:Query = {
-            name: undefined,
-            amount: undefined,
-            colors: [],
-            birthday: [],
-            comment: undefined         
-        }
-        let fqlQueries = this.state.fql.filterQueries;
-        let fqlCopy = this.state.fql;
-        console.log("ALL OF FQL", fqlCopy);
+    private runFilters: React.MouseEventHandler<HTMLButtonElement> = () => {
+        const {fql} = this.state;
+        if (!!fql) {
+            const filteredData = filterIt(data, fieldToIteratorMapper, fql);
 
-        const filteredData = filterIt(data, fieldToIteratorMapper, fqlCopy);
-        console.log('FILTERED DATA: ', filteredData);
-
-        this.setState({
-            display: filteredData,
-            filterApplied: 'Filters Applied'
-            });
-
+            this.setState({
+                display: filteredData,
+                filterApplied: 'Filters Applied'
+                });
+            }
     }
  
-
     render() {
         const colorOptions = colors.map((c) => ({
             value: c,
