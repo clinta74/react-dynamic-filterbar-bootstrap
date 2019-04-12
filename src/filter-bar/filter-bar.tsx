@@ -88,7 +88,7 @@ export class FilterBar<Tobj> extends React.Component<FilterBarProps<Tobj>, Filte
 
         if (!!fql) {
             fql.filterQueries = [...fql.filterQueries, filterQuery];
-            onFilterUpdate(fql);
+            onFilterUpdate({...fql});
         }
     }
 
@@ -114,7 +114,7 @@ export class FilterBar<Tobj> extends React.Component<FilterBarProps<Tobj>, Filte
                         filterQuery,
                         ...fql.filterQueries.slice(fqIndex + 1)
                     ];
-                    onFilterUpdate(fql);
+                    onFilterUpdate({ ...fql});
                 }
             });
             const field = this.getField(activeFilter.props.field);

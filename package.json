@@ -1,11 +1,11 @@
 {
   "name": "react-dynamic-filterbar",
-  "version": "0.1.1",
+  "version": "0.1.4",
   "description": "A filter bar to host dynamic filters using react.",
   "main": "lib/index.js",
   "peerDependencies": {
-    "react": "^16.8.1",
-    "react-dom": "^16.8.1"
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.7",
@@ -17,8 +17,8 @@
     "@types/react-select": "^2.0.15",
     "node-sass": "^4.11.0",
     "parcel-bundler": "^1.12.2",
-    "react": "^16.8.1",
-    "react-dom": "^16.8.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "react-flexbox-table": "^0.3.3",
     "react-hot-loader": "^4.6.5",
     "react-svg-icon-host": "^1.0.3",
@@ -50,7 +50,7 @@
   "homepage": "https://github.com/clinta74/react-filter-bar#readme",
   "files": [
     "lib",
-    "src/scss"
+    "src"
   ],
   "dependencies": {
     "classnames": "^2.2.6",
