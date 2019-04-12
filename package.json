@@ -23,6 +23,7 @@
     "react-hot-loader": "^4.6.5",
     "react-svg-icon-host": "^1.0.3",
     "svg-icon-converter": "^1.1.2",
+    "npm-watch": "^0.6.0",
     "typescript": "^3.4.1"
   },
   "watch": {
@@ -30,6 +31,7 @@
     "build:css": "src/{*.scss, *.ts}"
   },
   "scripts": {
+    "prepare": "npm run clean && npm run build",
     "start": "npx parcel example/src/index.html --out-dir example/dist --open",
     "build": "npm run build:icons && npm run build:js && npm run build:css",
     "build:js": "npx tsc",
@@ -55,7 +57,6 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "lodash": "^4.17.11",
-    "npm-watch": "^0.6.0",
     "react-datepicker": "^2.3.0",
     "react-select": "^2.4.2"
   }
