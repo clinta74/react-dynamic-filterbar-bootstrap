@@ -90,7 +90,7 @@ export class FilterBar<Tobj> extends React.Component<FilterBarProps<Tobj>, Filte
 
         if (!!fql) {
             fql.filterQueries = [...fql.filterQueries, filterQuery];
-            onFilterUpdate({...fql});
+            onFilterUpdate({ ...fql });
         }
     }
 
@@ -116,7 +116,7 @@ export class FilterBar<Tobj> extends React.Component<FilterBarProps<Tobj>, Filte
                         filterQuery,
                         ...fql.filterQueries.slice(fqIndex + 1)
                     ];
-                    onFilterUpdate({ ...fql});
+                    onFilterUpdate({ ...fql });
                 }
             });
             const field = this.getField(activeFilter.props.field);
@@ -128,9 +128,9 @@ export class FilterBar<Tobj> extends React.Component<FilterBarProps<Tobj>, Filte
         const activeFields = !!fql ? fql.filterQueries.map(fq => fq.field) : [];
         const availableFilterItems = this.availableChildren.filter(availableChild =>
             !activeFields.includes((availableChild as FilterElement<Tobj>).props.field)) as FilterElement<Tobj>[];
-        const dropdownItems = availableFilterItems.map(f => ({
-            option: f.props.label,
-            value: f
+        const dropdownItems = availableFilterItems.map(_filter => ({
+            option: _filter.props.label,
+            value: _filter
         }));
 
         const filterBarDropdownClassName = classNames('filter-bar-dropdown filter-bar-item', { 'hide': dropdownItems.length === 0 });
@@ -138,9 +138,11 @@ export class FilterBar<Tobj> extends React.Component<FilterBarProps<Tobj>, Filte
         return (
             <div className={classNames("filter-bar", className)}>
                 {filterItems}
-                <div className={filterBarDropdownClassName}>
-                    <div className="filter-bar-select-container">
-                        <Dropdown label="Add Filter" items={dropdownItems} onChange={this.onAddFilter} {...this.props} />
+                <div className="d-flex align-items-end form-group">
+                    <div className={filterBarDropdownClassName}>
+                        <div className="filter-bar-select-container">
+                            <Dropdown label="Add Filter" items={dropdownItems} onChange={this.onAddFilter} {...this.props} />
+                        </div>
                     </div>
                 </div>
             </div>

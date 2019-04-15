@@ -18,7 +18,7 @@ export class FilterItem<Tobj> extends React.Component<IFilterItemProps<Tobj>> {
   render() {
     const { filter, onRemoveFilter, labelClassName, label, field, className } = this.props;
     return (
-      <div>
+      <div className="form-group">
         <label className={classNames('filter-bar-label', labelClassName)}>{label}</label>
 
         <div className={classNames("filter-bar-item", className)}>
