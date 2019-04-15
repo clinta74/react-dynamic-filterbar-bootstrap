@@ -10,3 +10,8 @@ body {
 .react-datepicker__input-container, .react-datepicker-wrapper {
   width: 100%;
 }
+
+div.flex-table .th {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
