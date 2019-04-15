@@ -44,7 +44,7 @@ export const getDefaultFilterQuery = <Tobj extends {}>(field: FilterBars.FitlerQ
   field,
   logic: Logics.OR,
   filterItems: [{
-    operation: Operations.CONTAINS,
+    operation: Operations.EQ,
     value: '',
   }]
 });

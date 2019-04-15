@@ -16,12 +16,12 @@ export type Comparer<T> = {
  * Compare numbers for each operation
  */
 export const numberComparer:Comparer<number>  = {
-  EQ: (item, value) => item === value,
-  NEQ: (item, value) => item !== value, 
-  LT: (item, value) => item < value,
-  GT: (item, value) => item < value,
-  GTE: (item, value) => item >= value,
-  LTE: (item, value) => item <= value,
+  EQ: (item, value) => Number(item) === Number(value),
+  NEQ: (item, value) => Number(item) !== Number(value), 
+  LT: (item, value) => Number(item) < Number(value),
+  GT: (item, value) => Number(item) > Number(value),
+  GTE: (item, value) => Number(item) >= Number(value),
+  LTE: (item, value) => Number(item) <= Number(value),
   CONTAINS: noop,
   NCONTAINS: noop,
   STARTS: noop,

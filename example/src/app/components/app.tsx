@@ -46,6 +46,7 @@ export class App extends React.Component<AppProps, AppState> {
     }
 
     private onFilterUpdate: ChangeFQLHander<MyData> = (fql) => {
+        console.log('FQL: ', fql);
         this.setState({
             fql,
             filterApplied: false,
@@ -78,11 +79,11 @@ export class App extends React.Component<AppProps, AppState> {
                 <h2>Filter Bar Example</h2>
                 <div className="mb-4">
                     <FilterBar<MyData> onFilterUpdate={this.onFilterUpdate} fql={fql} buttonClassName="btn" filterItemClassName="d-flex form-group" labelClassName="d-block mb-0" className="d-md-flex flex-wrap">
-                        <Filters.StringFilter<MyData> field={["firstName", "lastName"]} label="Name" className="form-control" buttonClassName="btn btn-primary" showOperator shown/>
-                        <Filters.StringFilter<MyData> field="comment" label="Comment" className="form-control" buttonClassName="btn btn-primary" showOperator shown/>
+                        <Filters.StringFilter<MyData> field={["firstName", "lastName"]} label="Name" className="form-control" buttonClassName="btn btn-primary" showOperator/>
+                        <Filters.StringFilter<MyData> field="comment" label="Comment" className="form-control" buttonClassName="btn btn-primary" showOperator/>
                         <Filters.NumericFilter<MyData> field="amount" label="Amount" className="form-control" buttonClassName="btn btn-primary" showOperator shown/>
-                        <Filters.SelectFilter<MyData> field="color" label="Colors" options={colorOptions} styles={customStyles} isMulti shown/>
-                        <Filters.DateFilter field="birthday" label="Birthday" buttonClassName="btn btn-primary" showOperator shown/>
+                        <Filters.SelectFilter<MyData> field="color" label="Colors" options={colorOptions} styles={customStyles} isMulti />
+                        <Filters.DateFilter field="birthday" label="Birthday" buttonClassName="btn btn-primary" showOperator/>
                     </FilterBar>
                     <div className="mt-2">
                         <button onClick={this.runFilters} className="btn btn-primary" disabled={filterApplied}>Run Filters</button>
@@ -91,11 +92,12 @@ export class App extends React.Component<AppProps, AppState> {
 
                 <div>
                     <FlexTable.DataTable items={this.state.display}>
-                        <FlexTable.BoundColumn<MyData> binding={item => item.firstName} headerText="First Name" className="col-6 col-md-2" />
-                        <FlexTable.BoundColumn<MyData> binding={item => item.lastName} headerText="Last Name" className="col-6 col-md-2" />
-                        <FlexTable.BoundColumn<MyData> binding={item => item.color} headerText="Color" className="col-4 col-md-2" />
-                        <FlexTable.BoundColumn<MyData> binding={item => item.birthday} headerText="Birthday" className="col-4 col-md-3" formatter={value => moment(value).format('L')} />
-                        <FlexTable.BoundColumn<MyData> binding={item => item.comment} headerText="Comment" className="col-4 col-md-3" />
+                        <FlexTable.BoundColumn<MyData> binding={item => item.firstName} headerText="First Name" className="col-3 col-md-2" />
+                        <FlexTable.BoundColumn<MyData> binding={item => item.lastName} headerText="Last Name" className="col-3 col-md-2" />
+                        <FlexTable.BoundColumn<MyData> binding={item => item.amount.toString()} headerText="Amount" className="col-3 col-md-1" />
+                        <FlexTable.BoundColumn<MyData> binding={item => item.color} headerText="Color" className="col-3 col-md-2" />
+                        <FlexTable.BoundColumn<MyData> binding={item => item.birthday} headerText="Birthday" className="col-4 col-md-2" formatter={value => moment(value).format('L')} />
+                        <FlexTable.BoundColumn<MyData> binding={item => item.comment} headerText="Comment" className="col-12 col-md-3" />
                     </FlexTable.DataTable>
                 </div>
             </section>
