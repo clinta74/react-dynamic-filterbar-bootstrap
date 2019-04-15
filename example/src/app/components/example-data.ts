@@ -6,7 +6,7 @@ export const data: MyData[] = [
 		"lastName": "Larsen",
 		"amount": 416,
 		"birthday": "2019-02-22T03:00:27-08:00",
-		"colors": "red",
+		"color": "red",
 		"comment": "semper rutrum. Fusce dolor quam, elementum"
 	},
 	{
@@ -14,7 +14,7 @@ export const data: MyData[] = [
 		"lastName": "Lara",
 		"amount": 274,
 		"birthday": "2020-01-13T16:34:19-08:00",
-		"colors": "green",
+		"color": "green",
 		"comment": "est tempor"
 	},
 	{
@@ -22,7 +22,7 @@ export const data: MyData[] = [
 		"lastName": "Cannon",
 		"amount": 264,
 		"birthday": "2019-06-27T03:53:57-07:00",
-		"colors": "indigo",
+		"color": "indigo",
 		"comment": "nulla. In tincidunt congue turpis. In condimentum. Donec at"
 	},
 	{
@@ -30,7 +30,7 @@ export const data: MyData[] = [
 		"lastName": "Cohen",
 		"amount": 318,
 		"birthday": "2019-03-04T11:31:35-08:00",
-		"colors": "blue",
+		"color": "blue",
 		"comment": "fringilla cursus purus. Nullam scelerisque neque sed sem egestas blandit."
 	},
 	{
@@ -38,7 +38,7 @@ export const data: MyData[] = [
 		"lastName": "Galloway",
 		"amount": 316,
 		"birthday": "2019-11-04T11:59:04-08:00",
-		"colors": "violet",
+		"color": "violet",
 		"comment": "fames ac turpis egestas. Aliquam"
 	},
 	{
@@ -46,7 +46,7 @@ export const data: MyData[] = [
 		"lastName": "Carney",
 		"amount": 452,
 		"birthday": "2019-04-03T05:07:12-07:00",
-		"colors": "blue",
+		"color": "blue",
 		"comment": "fermentum metus. Aenean sed pede nec"
 	},
 	{
@@ -54,7 +54,7 @@ export const data: MyData[] = [
 		"lastName": "Trujillo",
 		"amount": 357,
 		"birthday": "2019-01-22T16:27:44-08:00",
-		"colors": "indigo",
+		"color": "indigo",
 		"comment": "In lorem. Donec"
 	},
 	{
@@ -62,7 +62,7 @@ export const data: MyData[] = [
 		"lastName": "Weaver",
 		"amount": 389,
 		"birthday": "2018-05-27T18:07:35-07:00",
-		"colors": "green",
+		"color": "green",
 		"comment": "velit. Cras lorem lorem, luctus"
 	},
 	{
@@ -70,7 +70,7 @@ export const data: MyData[] = [
 		"lastName": "Gilliam",
 		"amount": 427,
 		"birthday": "2018-06-23T19:58:50-07:00",
-		"colors": "orange",
+		"color": "orange",
 		"comment": "lobortis. Class aptent taciti sociosqu"
 	},
 	{
@@ -78,7 +78,7 @@ export const data: MyData[] = [
 		"lastName": "Chan",
 		"amount": 361,
 		"birthday": "2019-07-21T07:05:52-07:00",
-		"colors": "green",
+		"color": "green",
 		"comment": "sit amet, faucibus ut, nulla. Cras eu tellus eu"
 	},
 	{
@@ -86,7 +86,7 @@ export const data: MyData[] = [
 		"lastName": "Ewing",
 		"amount": 346,
 		"birthday": "2018-11-09T20:59:38-08:00",
-		"colors": "yellow",
+		"color": "yellow",
 		"comment": "Aliquam vulputate ullamcorper magna. Sed eu eros. Nam consequat dolor"
 	},
 	{
@@ -94,7 +94,7 @@ export const data: MyData[] = [
 		"lastName": "Le",
 		"amount": 281,
 		"birthday": "2019-10-02T19:24:58-07:00",
-		"colors": "red",
+		"color": "red",
 		"comment": "nisi a odio semper cursus. Integer"
 	},
 	{
@@ -102,7 +102,7 @@ export const data: MyData[] = [
 		"lastName": "Roach",
 		"amount": 428,
 		"birthday": "2019-12-17T12:07:54-08:00",
-		"colors": "yellow",
+		"color": "yellow",
 		"comment": "Quisque"
 	},
 	{
@@ -110,7 +110,7 @@ export const data: MyData[] = [
 		"lastName": "Rhodes",
 		"amount": 340,
 		"birthday": "2018-08-14T17:59:33-07:00",
-		"colors": "violet",
+		"color": "violet",
 		"comment": "scelerisque scelerisque dui. Suspendisse ac metus vitae"
 	},
 	{
@@ -118,7 +118,7 @@ export const data: MyData[] = [
 		"lastName": "Berry",
 		"amount": 373,
 		"birthday": "2018-06-11T16:24:28-07:00",
-		"colors": "green",
+		"color": "green",
 		"comment": "tellus sem mollis dui, in sodales elit erat vitae risus."
 	},
 	{
@@ -126,7 +126,7 @@ export const data: MyData[] = [
 		"lastName": "Hardin",
 		"amount": 447,
 		"birthday": "2019-05-06T11:39:41-07:00",
-		"colors": "blue",
+		"color": "blue",
 		"comment": "ultrices. Vivamus rhoncus. Donec"
 	},
 	{
@@ -134,7 +134,7 @@ export const data: MyData[] = [
 		"lastName": "Park",
 		"amount": 397,
 		"birthday": "2018-06-29T06:17:04-07:00",
-		"colors": "yellow",
+		"color": "yellow",
 		"comment": "mauris"
 	},
 	{
@@ -142,7 +142,7 @@ export const data: MyData[] = [
 		"lastName": "Morrison",
 		"amount": 494,
 		"birthday": "2018-11-22T03:58:54-08:00",
-		"colors": "indigo",
+		"color": "indigo",
 		"comment": "Aliquam erat volutpat. Nulla dignissim. Maecenas ornare"
 	},
 	{
@@ -150,7 +150,7 @@ export const data: MyData[] = [
 		"lastName": "Weeks",
 		"amount": 295,
 		"birthday": "2019-11-30T12:47:56-08:00",
-		"colors": "yellow",
+		"color": "yellow",
 		"comment": "Praesent eu dui. Cum sociis natoque penatibus et"
 	},
 	{
@@ -158,7 +158,7 @@ export const data: MyData[] = [
 		"lastName": "Franco",
 		"amount": 426,
 		"birthday": "2019-07-30T05:21:35-07:00",
-		"colors": "green",
+		"color": "green",
 		"comment": "fermentum"
 	},
 	{
@@ -166,7 +166,7 @@ export const data: MyData[] = [
 		"lastName": "Lyons",
 		"amount": 384,
 		"birthday": "2020-01-04T17:53:19-08:00",
-		"colors": "yellow",
+		"color": "yellow",
 		"comment": "non"
 	},
 	{
@@ -174,7 +174,7 @@ export const data: MyData[] = [
 		"lastName": "Guy",
 		"amount": 343,
 		"birthday": "2019-06-20T03:32:54-07:00",
-		"colors": "blue",
+		"color": "blue",
 		"comment": "egestas, urna justo"
 	},
 	{
@@ -182,7 +182,7 @@ export const data: MyData[] = [
 		"lastName": "Hensley",
 		"amount": 290,
 		"birthday": "2019-11-04T00:48:10-08:00",
-		"colors": "red",
+		"color": "red",
 		"comment": "eleifend, nunc risus varius orci, in consequat enim"
 	},
 	{
@@ -190,7 +190,7 @@ export const data: MyData[] = [
 		"lastName": "Carter",
 		"amount": 400,
 		"birthday": "2018-12-24T23:10:22-08:00",
-		"colors": "green",
+		"color": "green",
 		"comment": "lacus. Aliquam rutrum lorem ac risus. Morbi metus. Vivamus euismod"
 	},
 	{
@@ -198,7 +198,7 @@ export const data: MyData[] = [
 		"lastName": "Roy",
 		"amount": 375,
 		"birthday": "2019-12-14T07:40:07-08:00",
-		"colors": "yellow",
+		"color": "yellow",
 		"comment": "erat, in consectetuer ipsum nunc id enim. Curabitur"
 	},
 	{
@@ -206,7 +206,7 @@ export const data: MyData[] = [
 		"lastName": "Ramsey",
 		"amount": 304,
 		"birthday": "2018-06-20T12:45:08-07:00",
-		"colors": "red",
+		"color": "red",
 		"comment": "habitant morbi tristique senectus et netus et malesuada fames"
 	},
 	{
@@ -214,7 +214,7 @@ export const data: MyData[] = [
 		"lastName": "Haney",
 		"amount": 315,
 		"birthday": "2019-02-27T20:51:23-08:00",
-		"colors": "orange",
+		"color": "orange",
 		"comment": "id, blandit at, nisi."
 	},
 	{
@@ -222,7 +222,7 @@ export const data: MyData[] = [
 		"lastName": "Collins",
 		"amount": 380,
 		"birthday": "2019-10-11T20:33:32-07:00",
-		"colors": "red",
+		"color": "red",
 		"comment": "dolor, tempus"
 	},
 	{
@@ -230,7 +230,7 @@ export const data: MyData[] = [
 		"lastName": "Craft",
 		"amount": 487,
 		"birthday": "2019-03-29T16:45:43-07:00",
-		"colors": "blue",
+		"color": "blue",
 		"comment": "mattis ornare, lectus"
 	},
 	{
@@ -238,7 +238,7 @@ export const data: MyData[] = [
 		"lastName": "Shields",
 		"amount": 430,
 		"birthday": "2018-12-07T23:09:21-08:00",
-		"colors": "orange",
+		"color": "orange",
 		"comment": "scelerisque neque. Nullam nisl. Maecenas malesuada fringilla est. Mauris eu"
 	},
 	{
@@ -246,7 +246,7 @@ export const data: MyData[] = [
 		"lastName": "Juarez",
 		"amount": 393,
 		"birthday": "2018-10-13T07:26:26-07:00",
-		"colors": "blue",
+		"color": "blue",
 		"comment": "ornare sagittis felis. Donec tempor, est ac"
 	},
 	{
@@ -254,7 +254,7 @@ export const data: MyData[] = [
 		"lastName": "Jacobs",
 		"amount": 272,
 		"birthday": "2018-06-10T13:05:14-07:00",
-		"colors": "red",
+		"color": "red",
 		"comment": "convallis dolor. Quisque tincidunt pede ac urna. Ut tincidunt"
 	},
 	{
@@ -262,7 +262,7 @@ export const data: MyData[] = [
 		"lastName": "Burris",
 		"amount": 352,
 		"birthday": "2019-03-27T05:29:45-07:00",
-		"colors": "red",
+		"color": "red",
 		"comment": "sed libero. Proin sed"
 	},
 	{
@@ -270,7 +270,7 @@ export const data: MyData[] = [
 		"lastName": "Bright",
 		"amount": 333,
 		"birthday": "2018-07-14T18:41:39-07:00",
-		"colors": "orange",
+		"color": "orange",
 		"comment": "quis massa. Mauris vestibulum, neque sed dictum eleifend,"
 	},
 	{
@@ -278,7 +278,7 @@ export const data: MyData[] = [
 		"lastName": "Lowe",
 		"amount": 335,
 		"birthday": "2019-11-20T08:08:55-08:00",
-		"colors": "red",
+		"color": "red",
 		"comment": "Aliquam nisl. Nulla"
 	},
 	{
@@ -286,7 +286,7 @@ export const data: MyData[] = [
 		"lastName": "Cox",
 		"amount": 483,
 		"birthday": "2019-05-23T22:30:42-07:00",
-		"colors": "blue",
+		"color": "blue",
 		"comment": "mauris a nunc. In at"
 	},
 	{
@@ -294,7 +294,7 @@ export const data: MyData[] = [
 		"lastName": "Butler",
 		"amount": 414,
 		"birthday": "2018-04-25T03:33:03-07:00",
-		"colors": "red",
+		"color": "red",
 		"comment": "dolor. Nulla semper tellus id nunc interdum feugiat."
 	},
 	{
@@ -302,7 +302,7 @@ export const data: MyData[] = [
 		"lastName": "Oneill",
 		"amount": 358,
 		"birthday": "2018-12-30T07:56:53-08:00",
-		"colors": "yellow",
+		"color": "yellow",
 		"comment": "mi fringilla mi lacinia mattis. Integer eu lacus. Quisque"
 	},
 	{
@@ -310,7 +310,7 @@ export const data: MyData[] = [
 		"lastName": "English",
 		"amount": 460,
 		"birthday": "2018-05-24T01:39:47-07:00",
-		"colors": "blue",
+		"color": "blue",
 		"comment": "ut nisi a odio semper cursus. Integer mollis. Integer tincidunt"
 	},
 	{
@@ -318,7 +318,7 @@ export const data: MyData[] = [
 		"lastName": "Walls",
 		"amount": 275,
 		"birthday": "2020-01-26T07:13:56-08:00",
-		"colors": "red",
+		"color": "red",
 		"comment": "quis, pede."
 	},
 	{
@@ -326,7 +326,7 @@ export const data: MyData[] = [
 		"lastName": "Copeland",
 		"amount": 305,
 		"birthday": "2019-12-05T15:38:00-08:00",
-		"colors": "orange",
+		"color": "orange",
 		"comment": "ac"
 	},
 	{
@@ -334,7 +334,7 @@ export const data: MyData[] = [
 		"lastName": "Beck",
 		"amount": 303,
 		"birthday": "2018-11-01T06:25:56-07:00",
-		"colors": "indigo",
+		"color": "indigo",
 		"comment": "quis"
 	},
 	{
@@ -342,7 +342,7 @@ export const data: MyData[] = [
 		"lastName": "Newton",
 		"amount": 485,
 		"birthday": "2019-05-06T15:15:47-07:00",
-		"colors": "blue",
+		"color": "blue",
 		"comment": "aliquam"
 	},
 	{
@@ -350,7 +350,7 @@ export const data: MyData[] = [
 		"lastName": "Schroeder",
 		"amount": 413,
 		"birthday": "2018-04-28T14:42:00-07:00",
-		"colors": "orange",
+		"color": "orange",
 		"comment": "tempor diam dictum sapien."
 	},
 	{
@@ -358,7 +358,7 @@ export const data: MyData[] = [
 		"lastName": "Riley",
 		"amount": 438,
 		"birthday": "2019-12-31T07:15:00-08:00",
-		"colors": "orange",
+		"color": "orange",
 		"comment": "sit amet, consectetuer adipiscing"
 	},
 	{
@@ -366,7 +366,7 @@ export const data: MyData[] = [
 		"lastName": "Ruiz",
 		"amount": 362,
 		"birthday": "2020-03-10T13:56:46-07:00",
-		"colors": "blue",
+		"color": "blue",
 		"comment": "risus. Donec egestas. Aliquam nec enim. Nunc ut erat. Sed"
 	},
 	{
@@ -374,7 +374,7 @@ export const data: MyData[] = [
 		"lastName": "Wiley",
 		"amount": 285,
 		"birthday": "2019-05-21T21:39:52-07:00",
-		"colors": "blue",
+		"color": "blue",
 		"comment": "vitae aliquam eros turpis non enim. Mauris quis turpis vitae"
 	},
 	{
@@ -382,7 +382,7 @@ export const data: MyData[] = [
 		"lastName": "Mullins",
 		"amount": 399,
 		"birthday": "2019-04-01T04:41:53-07:00",
-		"colors": "violet",
+		"color": "violet",
 		"comment": "sit amet orci. Ut sagittis lobortis mauris. Suspendisse aliquet"
 	},
 	{
@@ -390,7 +390,7 @@ export const data: MyData[] = [
 		"lastName": "Shaw",
 		"amount": 387,
 		"birthday": "2018-04-01T15:42:59-07:00",
-		"colors": "yellow",
+		"color": "yellow",
 		"comment": "non, vestibulum nec, euismod in, dolor. Fusce feugiat. Lorem ipsum"
 	},
 	{
@@ -398,7 +398,7 @@ export const data: MyData[] = [
 		"lastName": "Kidd",
 		"amount": 464,
 		"birthday": "2019-10-13T10:16:35-07:00",
-		"colors": "yellow",
+		"color": "yellow",
 		"comment": "consequat dolor"
 	},
 	{
@@ -406,7 +406,7 @@ export const data: MyData[] = [
 		"lastName": "Lamb",
 		"amount": 407,
 		"birthday": "2020-01-05T06:33:08-08:00",
-		"colors": "violet",
+		"color": "violet",
 		"comment": "orci lobortis augue scelerisque mollis. Phasellus"
 	},
 	{
@@ -414,7 +414,7 @@ export const data: MyData[] = [
 		"lastName": "Sweeney",
 		"amount": 323,
 		"birthday": "2019-01-21T20:05:42-08:00",
-		"colors": "red",
+		"color": "red",
 		"comment": "diam nunc, ullamcorper eu, euismod ac, fermentum vel, mauris."
 	},
 	{
@@ -422,7 +422,7 @@ export const data: MyData[] = [
 		"lastName": "Lloyd",
 		"amount": 414,
 		"birthday": "2019-09-04T13:04:16-07:00",
-		"colors": "violet",
+		"color": "violet",
 		"comment": "parturient montes, nascetur ridiculus mus. Donec dignissim"
 	},
 	{
@@ -430,7 +430,7 @@ export const data: MyData[] = [
 		"lastName": "Chandler",
 		"amount": 387,
 		"birthday": "2019-07-12T02:01:46-07:00",
-		"colors": "orange",
+		"color": "orange",
 		"comment": "ante bibendum ullamcorper. Duis cursus,"
 	},
 	{
@@ -438,7 +438,7 @@ export const data: MyData[] = [
 		"lastName": "Glover",
 		"amount": 499,
 		"birthday": "2019-07-30T21:21:55-07:00",
-		"colors": "violet",
+		"color": "violet",
 		"comment": "enim commodo"
 	},
 	{
@@ -446,7 +446,7 @@ export const data: MyData[] = [
 		"lastName": "Callahan",
 		"amount": 291,
 		"birthday": "2020-03-20T13:51:28-07:00",
-		"colors": "violet",
+		"color": "violet",
 		"comment": "ac tellus. Suspendisse sed dolor. Fusce mi lorem,"
 	},
 	{
@@ -454,7 +454,7 @@ export const data: MyData[] = [
 		"lastName": "Cole",
 		"amount": 352,
 		"birthday": "2019-08-26T06:40:08-07:00",
-		"colors": "orange",
+		"color": "orange",
 		"comment": "accumsan laoreet ipsum. Curabitur consequat, lectus sit amet luctus"
 	},
 	{
@@ -462,7 +462,7 @@ export const data: MyData[] = [
 		"lastName": "Simmons",
 		"amount": 404,
 		"birthday": "2018-08-03T02:17:44-07:00",
-		"colors": "yellow",
+		"color": "yellow",
 		"comment": "fringilla est. Mauris eu turpis. Nulla"
 	},
 	{
@@ -470,7 +470,7 @@ export const data: MyData[] = [
 		"lastName": "Riddle",
 		"amount": 449,
 		"birthday": "2018-07-13T01:45:39-07:00",
-		"colors": "blue",
+		"color": "blue",
 		"comment": "id, libero. Donec consectetuer mauris id sapien. Cras dolor dolor,"
 	},
 	{
@@ -478,7 +478,7 @@ export const data: MyData[] = [
 		"lastName": "Hoover",
 		"amount": 379,
 		"birthday": "2019-12-21T12:05:29-08:00",
-		"colors": "yellow",
+		"color": "yellow",
 		"comment": "Sed dictum. Proin eget odio. Aliquam vulputate"
 	},
 	{
@@ -486,7 +486,7 @@ export const data: MyData[] = [
 		"lastName": "Britt",
 		"amount": 384,
 		"birthday": "2019-04-14T14:46:13-07:00",
-		"colors": "yellow",
+		"color": "yellow",
 		"comment": "turpis. In"
 	},
 	{
@@ -494,7 +494,7 @@ export const data: MyData[] = [
 		"lastName": "Koch",
 		"amount": 444,
 		"birthday": "2020-01-31T11:48:01-08:00",
-		"colors": "red",
+		"color": "red",
 		"comment": "risus. Donec egestas. Duis ac arcu. Nunc mauris."
 	},
 	{
@@ -502,7 +502,7 @@ export const data: MyData[] = [
 		"lastName": "Hewitt",
 		"amount": 350,
 		"birthday": "2019-04-02T19:53:14-07:00",
-		"colors": "red",
+		"color": "red",
 		"comment": "elementum at, egestas"
 	},
 	{
@@ -510,7 +510,7 @@ export const data: MyData[] = [
 		"lastName": "Burke",
 		"amount": 413,
 		"birthday": "2018-11-09T15:08:36-08:00",
-		"colors": "orange",
+		"color": "orange",
 		"comment": "Nulla tempor augue"
 	},
 	{
@@ -518,7 +518,7 @@ export const data: MyData[] = [
 		"lastName": "Larson",
 		"amount": 346,
 		"birthday": "2019-10-22T18:21:12-07:00",
-		"colors": "violet",
+		"color": "violet",
 		"comment": "erat, in"
 	},
 	{
@@ -526,7 +526,7 @@ export const data: MyData[] = [
 		"lastName": "Miller",
 		"amount": 317,
 		"birthday": "2018-08-13T20:09:29-07:00",
-		"colors": "yellow",
+		"color": "yellow",
 		"comment": "Aliquam"
 	},
 	{
@@ -534,7 +534,7 @@ export const data: MyData[] = [
 		"lastName": "Valenzuela",
 		"amount": 302,
 		"birthday": "2018-11-27T06:35:17-08:00",
-		"colors": "red",
+		"color": "red",
 		"comment": "nec urna et arcu imperdiet ullamcorper. Duis"
 	},
 	{
@@ -542,7 +542,7 @@ export const data: MyData[] = [
 		"lastName": "Howell",
 		"amount": 498,
 		"birthday": "2019-04-10T20:38:23-07:00",
-		"colors": "green",
+		"color": "green",
 		"comment": "Duis risus"
 	},
 	{
@@ -550,7 +550,7 @@ export const data: MyData[] = [
 		"lastName": "Boyd",
 		"amount": 278,
 		"birthday": "2019-03-13T02:17:34-07:00",
-		"colors": "orange",
+		"color": "orange",
 		"comment": "sit amet diam eu dolor egestas rhoncus. Proin"
 	},
 	{
@@ -558,7 +558,7 @@ export const data: MyData[] = [
 		"lastName": "Ortiz",
 		"amount": 409,
 		"birthday": "2020-02-14T19:24:57-08:00",
-		"colors": "green",
+		"color": "green",
 		"comment": "adipiscing ligula. Aenean gravida nunc sed pede. Cum sociis natoque"
 	},
 	{
@@ -566,7 +566,7 @@ export const data: MyData[] = [
 		"lastName": "Puckett",
 		"amount": 454,
 		"birthday": "2019-01-10T20:55:22-08:00",
-		"colors": "orange",
+		"color": "orange",
 		"comment": "tempus, lorem fringilla ornare placerat, orci lacus vestibulum"
 	},
 	{
@@ -574,7 +574,7 @@ export const data: MyData[] = [
 		"lastName": "Dillon",
 		"amount": 432,
 		"birthday": "2018-09-11T04:27:25-07:00",
-		"colors": "indigo",
+		"color": "indigo",
 		"comment": "nunc interdum"
 	},
 	{
@@ -582,7 +582,7 @@ export const data: MyData[] = [
 		"lastName": "Kidd",
 		"amount": 464,
 		"birthday": "2018-09-03T05:34:56-07:00",
-		"colors": "orange",
+		"color": "orange",
 		"comment": "sollicitudin orci sem"
 	},
 	{
@@ -590,7 +590,7 @@ export const data: MyData[] = [
 		"lastName": "Barrera",
 		"amount": 488,
 		"birthday": "2019-10-01T03:59:44-07:00",
-		"colors": "red",
+		"color": "red",
 		"comment": "Fusce mi lorem, vehicula et, rutrum eu, ultrices sit"
 	},
 	{
@@ -598,7 +598,7 @@ export const data: MyData[] = [
 		"lastName": "Dickerson",
 		"amount": 494,
 		"birthday": "2020-02-09T07:27:31-08:00",
-		"colors": "orange",
+		"color": "orange",
 		"comment": "Sed malesuada augue ut lacus. Nulla"
 	},
 	{
@@ -606,7 +606,7 @@ export const data: MyData[] = [
 		"lastName": "Higgins",
 		"amount": 470,
 		"birthday": "2019-09-27T18:37:51-07:00",
-		"colors": "yellow",
+		"color": "yellow",
 		"comment": "non, lobortis quis, pede. Suspendisse dui. Fusce"
 	},
 	{
@@ -614,7 +614,7 @@ export const data: MyData[] = [
 		"lastName": "Simon",
 		"amount": 334,
 		"birthday": "2019-10-21T08:31:07-07:00",
-		"colors": "blue",
+		"color": "blue",
 		"comment": "Nunc"
 	},
 	{
@@ -622,7 +622,7 @@ export const data: MyData[] = [
 		"lastName": "Lane",
 		"amount": 433,
 		"birthday": "2019-11-28T01:41:47-08:00",
-		"colors": "yellow",
+		"color": "yellow",
 		"comment": "purus mauris a"
 	},
 	{
@@ -630,7 +630,7 @@ export const data: MyData[] = [
 		"lastName": "Garner",
 		"amount": 358,
 		"birthday": "2018-04-13T02:06:38-07:00",
-		"colors": "green",
+		"color": "green",
 		"comment": "euismod"
 	},
 	{
@@ -638,7 +638,7 @@ export const data: MyData[] = [
 		"lastName": "Winters",
 		"amount": 430,
 		"birthday": "2019-02-13T17:38:49-08:00",
-		"colors": "indigo",
+		"color": "indigo",
 		"comment": "est. Mauris eu"
 	},
 	{
@@ -646,7 +646,7 @@ export const data: MyData[] = [
 		"lastName": "Clayton",
 		"amount": 402,
 		"birthday": "2019-02-06T08:46:56-08:00",
-		"colors": "yellow",
+		"color": "yellow",
 		"comment": "magna tellus faucibus leo, in lobortis tellus justo sit amet"
 	},
 	{
@@ -654,7 +654,7 @@ export const data: MyData[] = [
 		"lastName": "Dodson",
 		"amount": 277,
 		"birthday": "2018-05-11T14:54:17-07:00",
-		"colors": "green",
+		"color": "green",
 		"comment": "ad litora torquent per conubia nostra, per inceptos hymenaeos."
 	},
 	{
@@ -662,7 +662,7 @@ export const data: MyData[] = [
 		"lastName": "Key",
 		"amount": 388,
 		"birthday": "2020-02-14T23:52:03-08:00",
-		"colors": "yellow",
+		"color": "yellow",
 		"comment": "Aliquam tincidunt, nunc ac"
 	},
 	{
@@ -670,7 +670,7 @@ export const data: MyData[] = [
 		"lastName": "Case",
 		"amount": 384,
 		"birthday": "2019-05-28T00:42:45-07:00",
-		"colors": "indigo",
+		"color": "indigo",
 		"comment": "id, ante. Nunc mauris sapien, cursus in, hendrerit consectetuer,"
 	},
 	{
@@ -678,7 +678,7 @@ export const data: MyData[] = [
 		"lastName": "Burks",
 		"amount": 308,
 		"birthday": "2018-11-05T14:10:08-08:00",
-		"colors": "yellow",
+		"color": "yellow",
 		"comment": "mattis. Cras eget nisi dictum augue malesuada"
 	},
 	{
@@ -686,7 +686,7 @@ export const data: MyData[] = [
 		"lastName": "Carpenter",
 		"amount": 379,
 		"birthday": "2019-04-24T16:26:34-07:00",
-		"colors": "red",
+		"color": "red",
 		"comment": "Proin eget odio. Aliquam"
 	},
 	{
@@ -694,7 +694,7 @@ export const data: MyData[] = [
 		"lastName": "Garcia",
 		"amount": 310,
 		"birthday": "2018-08-11T03:44:42-07:00",
-		"colors": "green",
+		"color": "green",
 		"comment": "ipsum. Curabitur consequat, lectus sit"
 	},
 	{
@@ -702,7 +702,7 @@ export const data: MyData[] = [
 		"lastName": "Payne",
 		"amount": 291,
 		"birthday": "2019-12-12T12:23:24-08:00",
-		"colors": "orange",
+		"color": "orange",
 		"comment": "Fusce aliquet"
 	},
 	{
@@ -710,7 +710,7 @@ export const data: MyData[] = [
 		"lastName": "Shaw",
 		"amount": 487,
 		"birthday": "2018-10-15T04:27:57-07:00",
-		"colors": "red",
+		"color": "red",
 		"comment": "dis parturient"
 	},
 	{
@@ -718,7 +718,7 @@ export const data: MyData[] = [
 		"lastName": "Wade",
 		"amount": 419,
 		"birthday": "2020-03-15T04:33:41-07:00",
-		"colors": "orange",
+		"color": "orange",
 		"comment": "varius. Nam porttitor scelerisque neque. Nullam"
 	},
 	{
@@ -726,7 +726,7 @@ export const data: MyData[] = [
 		"lastName": "Andrews",
 		"amount": 370,
 		"birthday": "2019-04-23T18:23:39-07:00",
-		"colors": "green",
+		"color": "green",
 		"comment": "rutrum eu, ultrices sit amet, risus."
 	},
 	{
@@ -734,7 +734,7 @@ export const data: MyData[] = [
 		"lastName": "Avery",
 		"amount": 254,
 		"birthday": "2019-02-13T08:12:38-08:00",
-		"colors": "violet",
+		"color": "violet",
 		"comment": "non enim."
 	},
 	{
@@ -742,7 +742,7 @@ export const data: MyData[] = [
 		"lastName": "Orr",
 		"amount": 483,
 		"birthday": "2019-12-02T23:05:26-08:00",
-		"colors": "green",
+		"color": "green",
 		"comment": "a ultricies adipiscing, enim mi tempor lorem, eget mollis lectus"
 	},
 	{
@@ -750,7 +750,7 @@ export const data: MyData[] = [
 		"lastName": "Hensley",
 		"amount": 341,
 		"birthday": "2019-06-10T22:57:49-07:00",
-		"colors": "green",
+		"color": "green",
 		"comment": "fames ac turpis egestas. Fusce aliquet magna a"
 	},
 	{
@@ -758,7 +758,7 @@ export const data: MyData[] = [
 		"lastName": "Holder",
 		"amount": 434,
 		"birthday": "2018-08-16T23:29:56-07:00",
-		"colors": "blue",
+		"color": "blue",
 		"comment": "congue. In scelerisque scelerisque dui. Suspendisse ac metus vitae velit"
 	},
 	{
@@ -766,7 +766,7 @@ export const data: MyData[] = [
 		"lastName": "Marks",
 		"amount": 274,
 		"birthday": "2018-08-29T11:06:49-07:00",
-		"colors": "yellow",
+		"color": "yellow",
 		"comment": "eu, odio. Phasellus"
 	},
 	{
@@ -774,7 +774,7 @@ export const data: MyData[] = [
 		"lastName": "Calderon",
 		"amount": 484,
 		"birthday": "2019-12-02T03:54:29-08:00",
-		"colors": "red",
+		"color": "red",
 		"comment": "accumsan neque et nunc. Quisque ornare tortor at"
 	},
 	{
@@ -782,7 +782,7 @@ export const data: MyData[] = [
 		"lastName": "Barnes",
 		"amount": 341,
 		"birthday": "2019-08-01T04:55:51-07:00",
-		"colors": "indigo",
+		"color": "indigo",
 		"comment": "nisi. Mauris"
 	},
 	{
@@ -790,7 +790,7 @@ export const data: MyData[] = [
 		"lastName": "Raymond",
 		"amount": 460,
 		"birthday": "2019-01-01T09:39:17-08:00",
-		"colors": "blue",
+		"color": "blue",
 		"comment": "in consectetuer"
 	},
 	{
@@ -798,7 +798,7 @@ export const data: MyData[] = [
 		"lastName": "Rivera",
 		"amount": 342,
 		"birthday": "2018-10-04T08:45:56-07:00",
-		"colors": "yellow",
+		"color": "yellow",
 		"comment": "sed, facilisis vitae, orci. Phasellus dapibus quam quis diam."
 	}
 ]

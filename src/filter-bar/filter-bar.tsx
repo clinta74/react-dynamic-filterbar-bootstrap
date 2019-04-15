@@ -13,8 +13,10 @@ export type GetDefaultFilterQueryHandler<Tobj> = (field: FilterBars.FitlerQueryF
 type FilterBarProps<Tobj> = {
     onFilterUpdate: ChangeFQLHander<Tobj>,
     fql: FilterBars.FilterQueryLanguage<Tobj> | undefined,
+    className?: string,
     labelClassName?: string,
     buttonClassName?: string,
+    filterItemClassName?: string,
 };
 
 type FilterBarState = {
@@ -97,7 +99,7 @@ export class FilterBar<Tobj> extends React.Component<FilterBarProps<Tobj>, Filte
     }
 
     render() {
-        const { fql, onFilterUpdate } = this.props;
+        const { fql, onFilterUpdate, filterItemClassName, className, labelClassName } = this.props;
 
         const filterItems = fql && fql.filterQueries.map(fq => {
             const activeFilter = this.availableChildren.find(availableChild => {
@@ -118,9 +120,9 @@ export class FilterBar<Tobj> extends React.Component<FilterBarProps<Tobj>, Filte
                 }
             });
             const field = this.getField(activeFilter.props.field);
-            const label = activeFilter.props.label;
-            const labelClassName = activeFilter.props.labelClassName;
-            return <FilterItem key={field} filter={filter} onRemoveFilter={this.onRemoveFilter} field={field} label={label} labelClassName={labelClassName} />;
+            const { label } = activeFilter.props;
+
+            return <FilterItem key={field} filter={filter} onRemoveFilter={this.onRemoveFilter} field={field} label={label} className={filterItemClassName} labelClassName={labelClassName} />;
         });
 
         const activeFields = !!fql ? fql.filterQueries.map(fq => fq.field) : [];
@@ -134,7 +136,7 @@ export class FilterBar<Tobj> extends React.Component<FilterBarProps<Tobj>, Filte
         const filterBarDropdownClassName = classNames('filter-bar-dropdown filter-bar-item', { 'hide': dropdownItems.length === 0 });
 
         return (
-            <div className="filter-bar">
+            <div className={classNames("filter-bar", className)}>
                 {filterItems}
                 <div className={filterBarDropdownClassName}>
                     <div className="filter-bar-select-container">

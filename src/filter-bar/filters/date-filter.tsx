@@ -143,14 +143,14 @@ export class DateFilter<Tobj> extends React.Component<FilterBars.FilterProps<Tob
     const operations = find(dateOperations, i => i.value === operationValue);
 
     return (
-      <div className="filter-bar-input-group input-group">
+      <div className="filter-bar-input-group input-group flex-nowrap">
         {
           showOperator &&
           <div className="input-group-prepend">
             <Dropdown items={dateOperations} label={operations ? operations.option : ''} buttonClassName={buttonClassName} onChange={this.onChangeDropdown} />
           </div>
         }
-        <div className="d-flex align-items-center">
+        <div className="d-flex align-items-center w-100">
         <DatePicker className="form-control" selected={this.getStartDate(filterQuery)} onChange={this.onChangeStartDatePicker} />
         {
           operationValue == 3 &&

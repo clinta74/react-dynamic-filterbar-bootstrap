@@ -3,16 +3,11 @@
 .filter-bar {
   z-index: 10;
   position: relative;
-  display: inline-flex;
-  align-items: center;
 
   .filter-bar- {
     &item {
       position: relative;
-      z-index: 1;
-      display: inline-flex;
-      align-items: center;
-      border-left: 1px solid $fb-seperator-color;
+      z-index: auto;
       padding-left: 0.5em;
 
       &:first-of-type {
@@ -21,12 +16,6 @@
       }
     }
     
-    &label {
-      display: inline;
-      margin: 0;
-      margin-right: 0.25em;
-    }
-
     &remove-item {
       color: $fb-close-icon-color;
       background: none;
@@ -57,7 +46,7 @@
 
     &dropdown-menu {
       background-color: #fefeff;
-      z-index: 2;
+      z-index: 3;
       position: absolute;
       max-height: 11.85em;
       overflow-y: auto;
@@ -92,6 +81,7 @@
     &dropdown-button {
       border: 1px solid $fb-seperator-color;
       display: flex;
+      white-space: nowrap;
 
       &:hover {
         background-color: $fb-item-hover-color;

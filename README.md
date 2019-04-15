@@ -50,7 +50,7 @@ class App extends React.Component<AppProps, AppState> {
 - onFilterUpdate - Event Handler called when any filters update the FQL.
 - fql - The FQL data to be displayed by the filters in the filter bar.
 - buttonClassName - Class to be applied the add filter dropdown of the filter bar.
-### Comon
+### Common
 - field - The field the filter applies to.
 - label - The string used to represent the filter. Used in the add fitler and filter labels.
 - shown - The filter is added at page load with default values.
@@ -113,6 +113,7 @@ SELECT * FROM USER WHERE [name] = 'Jim';
 As SQL
 ``` sql
 SELECT * FROM USER WHERE [comment] LIKE '%Test%' AND ([color] = 'red' OR [color] = 'blue');
+SELECT * FROM USER WHERE [comment] LIKE '%Test%' AND ([color] IN ('red', 'blue'));
 ```
 
 #### Examples

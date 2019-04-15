@@ -53,7 +53,7 @@ export class SelectFilter<Tobj> extends React.PureComponent<FilterBars.FilterPro
     const value = !!filterQuery ? filterQuery.filterItems.map(f => f.value as string) : [];
 
     return (
-      <div>
+      <div className="w-100">
         <Select 
           isMulti={isMulti}
           styles={styles}
@@ -72,7 +72,7 @@ export const customStyles = {
   control: (styles: {}) => ({
     ...styles,
     minHeight: '34px',
-    minWidth: '10em',
+    minWidth: '16em',
   }),
   clearIndicator: (styles: {}) => ({
     ...styles,

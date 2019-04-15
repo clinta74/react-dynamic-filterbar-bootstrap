@@ -1,12 +1,14 @@
 import React from 'react';
 import FlexTable from 'react-flexbox-table';
-import { FilterBars, Filters, FilterBar, ChangeFQLHander } from '../../../../src/index';
+import { FilterBars, Filters, FilterBar, ChangeFQLHander, filterData } from '../../../../src/index';
 import { customStyles } from '../../../../src/filter-bar/filters/select-filter';
 import { data } from './example-data';
-import { filterIt, fieldToIteratorMapper } from '../filter-helper-functions';
 import moment from 'moment';
+import { numberComparer,
+    stringComparer,
+    dateComparer } from '../../../../src/index';
 
-const colors = ['red', 'green', 'blue', 'black', 'pink', 'yellow', 'orange', 'indigo'];
+const color = ['red', 'green', 'blue', 'black', 'pink', 'yellow', 'orange', 'indigo'];
 
 export type MyData = {
     firstName: string,
@@ -14,15 +16,24 @@ export type MyData = {
     comment: string,
     amount: number,
     birthday: string,
-    colors: string,
+    color: string,
 }
 
 type AppProps = {};
 type AppState = {
     fql?: FilterBars.FilterQueryLanguage<MyData>,
     display: MyData[],
-    filterApplied: string,
+    filterApplied: boolean,
 }
+
+const fieldToIteratorMapper: FilterBars.FilterMapper<MyData> = {
+    firstName: stringComparer,
+    lastName: stringComparer,
+    comment: stringComparer,
+    amount: numberComparer,
+    birthday: dateComparer,
+    color: stringComparer,
+  }
 
 export class App extends React.Component<AppProps, AppState> {
     constructor(props: AppProps) {
@@ -30,67 +41,61 @@ export class App extends React.Component<AppProps, AppState> {
         this.state = {
             fql: undefined,
             display: data,
-            filterApplied: 'No Filters Applied'
+            filterApplied: false,
         }
     }
 
     private onFilterUpdate: ChangeFQLHander<MyData> = (fql) => {
         this.setState({
             fql,
-            filterApplied: 'New Filters Not Run'
+            filterApplied: false,
         });
-    }
-
-    /** Clears out previously run filters */
-    private showAll: React.MouseEventHandler<HTMLButtonElement> = () => {
-        this.setState({
-            display: data,
-            filterApplied: 'No Filters Applied'
-        })
     }
 
     /** Executes currently selected filters on data set */
     private runFilters: React.MouseEventHandler<HTMLButtonElement> = () => {
         const { fql } = this.state;
         if (!!fql) {
-            const filteredData = filterIt(data, fieldToIteratorMapper, fql);
+            const filteredData = filterData(data, fieldToIteratorMapper, fql);
 
             this.setState({
                 display: filteredData,
-                filterApplied: 'Filters Applied'
+                filterApplied: true,
             });
         }
     }
 
     render() {
-        const colorOptions = colors.map((c) => ({
+        const colorOptions = color.map((c) => ({
             value: c,
             option: c,
         }));
 
-        const { fql } = this.state;
+        const { fql, filterApplied } = this.state;
 
         return (
             <section className="container">
                 <h2>Filter Bar Example</h2>
                 <div className="mb-4">
-                    <FilterBar<MyData> onFilterUpdate={this.onFilterUpdate} fql={fql} buttonClassName="btn">
-                        <Filters.StringFilter<MyData> field="name" label="Name" className="form-control" buttonClassName="btn btn-primary" showOperator />
-                        <Filters.StringFilter<MyData> field="comment" label="Comment" className="form-control" buttonClassName="btn btn-primary" showOperator />
-                        <Filters.NumericFilter<MyData> field="amount" label="Amount" className="form-control" showOperator />
-                        <Filters.SelectFilter<MyData> field="colors" label="Colors" options={colorOptions} styles={customStyles} isMulti />
-                        <Filters.DateFilter field="birthday" label="Birthday" showOperator buttonClassName="btn btn-primary" shown />
+                    <FilterBar<MyData> onFilterUpdate={this.onFilterUpdate} fql={fql} buttonClassName="btn" filterItemClassName="d-flex form-group" labelClassName="d-block mb-0" className="d-md-flex flex-wrap">
+                        <Filters.StringFilter<MyData> field={["firstName", "lastName"]} label="Name" className="form-control" buttonClassName="btn btn-primary" showOperator shown/>
+                        <Filters.StringFilter<MyData> field="comment" label="Comment" className="form-control" buttonClassName="btn btn-primary" showOperator shown/>
+                        <Filters.NumericFilter<MyData> field="amount" label="Amount" className="form-control" buttonClassName="btn btn-primary" showOperator shown/>
+                        <Filters.SelectFilter<MyData> field="color" label="Colors" options={colorOptions} styles={customStyles} isMulti shown/>
+                        <Filters.DateFilter field="birthday" label="Birthday" buttonClassName="btn btn-primary" showOperator shown/>
                     </FilterBar>
-                    <button onClick={this.runFilters}> Run Filters </button>
-                    <button onClick={this.showAll} title="Click to toggle the filters on or off">{this.state.filterApplied}</button>
+                    <div className="mt-2">
+                        <button onClick={this.runFilters} className="btn btn-primary" disabled={filterApplied}>Run Filters</button>
+                    </div>
                 </div>
 
                 <div>
                     <FlexTable.DataTable items={this.state.display}>
-                        <FlexTable.BoundColumn<MyData> binding={item => item.firstName} headerText="First Name" className="col-2" />
-                        <FlexTable.BoundColumn<MyData> binding={item => item.lastName} headerText="Last Name" className="col-2" />
-                        <FlexTable.BoundColumn<MyData> binding={item => item.birthday} headerText="Birthday" className="col-3" formatter={value => moment(value).format('L')} />
-                        <FlexTable.BoundColumn<MyData> binding={item => item.comment} headerText="Comment" className="col-5" />
+                        <FlexTable.BoundColumn<MyData> binding={item => item.firstName} headerText="First Name" className="col-6 col-md-2" />
+                        <FlexTable.BoundColumn<MyData> binding={item => item.lastName} headerText="Last Name" className="col-6 col-md-2" />
+                        <FlexTable.BoundColumn<MyData> binding={item => item.color} headerText="Color" className="col-4 col-md-2" />
+                        <FlexTable.BoundColumn<MyData> binding={item => item.birthday} headerText="Birthday" className="col-4 col-md-3" formatter={value => moment(value).format('L')} />
+                        <FlexTable.BoundColumn<MyData> binding={item => item.comment} headerText="Comment" className="col-4 col-md-3" />
                     </FlexTable.DataTable>
                 </div>
             </section>

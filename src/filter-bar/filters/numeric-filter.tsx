@@ -101,7 +101,7 @@ export class NumericFilter<Tobj> extends React.Component<FilterBars.FilterProps<
 
     return (
 
-      <div className="filter-bar-input-group input-group">
+      <div className="filter-bar-input-group input-group flex-nowrap">
         {
           showOperator &&
           <div className="input-group-prepend">
