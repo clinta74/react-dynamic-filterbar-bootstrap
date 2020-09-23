@@ -27,7 +27,7 @@ export const getDefaultFilterQuery = <Tobj extends {}>(field: FilterBars.FitlerQ
 });
 
 export class SelectFilter<Tobj> extends React.PureComponent<FilterBars.FilterProps<Tobj, MultiSelectFilterProps>> {
-  public static defaultProps: FilterBars.IGetDefaultFilterQuery<unknown> = {
+  public static defaultProps: FilterBars.IGetDefaultFilterQuery<FilterBars.IDefaultFilterProps> = {
     getDefaultFilterQuery,
   }
 
@@ -38,7 +38,7 @@ export class SelectFilter<Tobj> extends React.PureComponent<FilterBars.FilterPro
       value: value.value,
     })) : [ {
       operation: Operations.EQ,
-      value: values && values.value,
+      value: values && (values as Option).value,
     }];
 
     onFilterUpdate && onFilterUpdate({

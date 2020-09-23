@@ -50,7 +50,7 @@ export const getDefaultFilterQuery = <Tobj extends {}>(field: FilterBars.FitlerQ
 });
 
 export class NumericFilter<Tobj> extends React.Component<FilterBars.FilterProps<Tobj, StringFilterProps>> {
-  public static defaultProps: FilterBars.IGetDefaultFilterQuery<unknown> = {
+  public static defaultProps: FilterBars.IGetDefaultFilterQuery<FilterBars.IDefaultFilterProps> = {
     getDefaultFilterQuery,
   }
 

@@ -34,6 +34,10 @@ export declare namespace FilterBars {
     getDefaultFilterQuery?: GetDefaultFilterQueryHandler<Tobj>,
   }
 
+  interface IDefaultFilterProps {
+    getDefaultFilterQuery: () => void;
+  }
+
   type FilterProps<Tobj, Props = {}> = {
     label: string;
     field: FitlerQueryField<Tobj>,

@@ -38,7 +38,7 @@ export const getDefaultFilterQuery = <Tobj extends {}>(field: FilterBars.FitlerQ
 });
 
 export class DateFilter<Tobj> extends React.Component<FilterBars.FilterProps<Tobj, DateFilterProps>> {
-  public static defaultProps: FilterBars.IGetDefaultFilterQuery<unknown> = {
+  public static defaultProps: FilterBars.IGetDefaultFilterQuery<FilterBars.IDefaultFilterProps> = {
     getDefaultFilterQuery,
   }
 

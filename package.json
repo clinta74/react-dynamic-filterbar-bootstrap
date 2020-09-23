@@ -1,6 +1,6 @@
 {
   "name": "react-dynamic-filterbar",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "A filter bar to host dynamic filters using react.",
   "main": "lib/index.js",
   "peerDependencies": {
@@ -8,24 +8,24 @@
     "react-dom": "^16.8.6"
   },
   "devDependencies": {
-    "@types/classnames": "^2.2.7",
-    "@types/lodash": "^4.14.123",
-    "@types/node": "^11.11.6",
-    "@types/react": "^16.8.2",
-    "@types/react-datepicker": "^2.2.0",
-    "@types/react-dom": "^16.8.0",
-    "@types/react-router-dom": "^4.3.2",
-    "@types/react-select": "^2.0.15",
-    "node-sass": "^4.11.0",
+    "@types/classnames": "^2.2.10",
+    "@types/lodash": "^4.14.161",
+    "@types/node": "^11.15.27",
+    "@types/react": "^16.9.49",
+    "@types/react-datepicker": "^2.11.1",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-router-dom": "^4.3.5",
+    "@types/react-select": "^2.0.19",
+    "node-sass": "^4.14.1",
     "npm-watch": "^0.6.0",
-    "parcel-bundler": "^1.12.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-flexbox-table": "^0.3.7",
-    "react-hot-loader": "^4.6.5",
-    "react-svg-icon-host": "^1.0.3",
+    "parcel-bundler": "^1.12.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-flexbox-table": "^0.3.12",
+    "react-hot-loader": "^4.13.0",
+    "react-svg-icon-host": "^1.0.9",
     "svg-icon-converter": "^1.1.2",
-    "typescript": "^3.4.1"
+    "typescript": "^3.9.7"
   },
   "watch": {
     "build:js": "src/{*.tsx, *.ts}",
@@ -39,7 +39,8 @@
     "build:css": "npx node-sass src/scss/filter-bar.scss -o ./lib/css",
     "build:icons": "npx svg-convert -s icons -o src/filter-bar-icons -l FilterBarIcons",
     "clean": "rm -Rf ./lib",
-    "watch": "npx npm-watch"
+    "watch": "npx npm-watch",
+    "build:docs": "npm run build && cp -R ./example/dist ./docs"
   },
   "repository": {
     "type": "git",
@@ -57,9 +58,9 @@
   ],
   "dependencies": {
     "classnames": "^2.2.6",
-    "lodash": "^4.17.11",
-    "moment": "^2.24.0",
-    "react-datepicker": "^2.3.0",
-    "react-select": "^2.4.2"
+    "lodash": "^4.17.20",
+    "moment": "^2.29.0",
+    "react-datepicker": "^2.16.0",
+    "react-select": "^2.4.4"
   }
 }
