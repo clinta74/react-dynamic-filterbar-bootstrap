@@ -588,4 +588,4 @@ var e,t=arguments[3];!function(t,n){"object"==typeof exports&&"undefined"!=typeo
 },{"react":"ccIB","react-flexbox-table":"BwJ3","../../../../src/index":"WdSo","../../../../src/filter-bar/filters/select-filter":"T3Fv","./example-data":"JXSG","moment":"ZCrj"}],"iUHz":[function(require,module,exports) {
 "use strict";var e=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(exports,"__esModule",{value:!0});var t=e(require("react")),r=e(require("react-dom")),u=require("react-hot-loader"),l=require("./components/app"),o=u.hot(module)(function(){return t.default.createElement(l.App,null)});r.default.render(t.default.createElement(o,null),document.getElementById("root"));
 },{"react":"ccIB","react-dom":"x9tB","react-hot-loader":"eTnV","./components/app":"irDh"}]},{},["iUHz"], null)
-//# sourceMappingURL=react-dynamic-filterbar/app.ac069d79.js.map
+//# sourceMappingURL=app.ac069d79.js.map

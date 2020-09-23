@@ -40,7 +40,7 @@
     "build:icons": "npx svg-convert -s icons -o src/filter-bar-icons -l FilterBarIcons",
     "clean": "rm -Rf ./lib",
     "watch": "npx npm-watch",
-    "build:docs": "rm -Rf ./docs && parcel build example/src/index.html --out-dir ./docs --public-url react-dynamic-filterbar/"
+    "build:docs": "rm -Rf ./docs && parcel build example/src/index.html --out-dir ./docs --public-url ./"
   },
   "repository": {
     "type": "git",
