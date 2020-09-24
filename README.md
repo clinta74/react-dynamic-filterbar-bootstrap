@@ -89,28 +89,31 @@ SELECT * FROM USER WHERE [name] = 'Jim';
 ```
 
 ``` javascript
-  FQL = { // The base FQL wrapping object.
-    logic: AND
-    filterQueries: [ 
-      logic: OR,
-      field: 'comment',
-      filterItems: [
-        operation: CONTAINS,
-        value: 'Test'
-      ]
-    ],
-    filterQueries: [ 
-      logic: OR,
-      field: 'color',
-      filterItems: [{
-        operation: EQ,
-        value: 'red'
-      }, {
-        operation: EQ,
-        value: 'blue'
-      }]
+// The base FQL wrapping object.
+const fql = {
+    logic: 'AND',
+    filterQueries: [
+        {
+            logic: 'OR',
+            field: 'comment',
+            filterItems: [{
+                operation: 'CONTAINS',
+                value: 'Test'
+            }]
+        },
+        {
+            logic: 'OR',
+            field: 'color',
+            filterItems: [{
+                operation: 'EQ',
+                value: 'red'
+            }, {
+                operation: 'EQ',
+                value: 'blue'
+            }]
+        }
     ]
-  }
+}
 ```
 As SQL
 ``` sql
