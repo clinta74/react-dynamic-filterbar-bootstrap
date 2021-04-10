@@ -1,6 +1,6 @@
 {
-  "name": "react-dynamic-filterbar",
-  "version": "0.3.0",
+  "name": "react-dynamic-filterbar-bootstrap",
+  "version": "1.0.0",
   "description": "A filter bar to host dynamic filters using react.",
   "main": "lib/index.js",
   "peerDependencies": {
@@ -44,14 +44,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/clinta74/react-filter-bar.git"
+    "url": "git+https://github.com/clinta74/react-dynamic-filterbar-bootstrap.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/clinta74/react-filter-bar/issues"
+    "url": "https://github.com/clinta74/react-dynamic-filterbar-bootstrapr/issues"
   },
-  "homepage": "https://github.com/clinta74/react-filter-bar#readme",
+  "homepage": "https://github.com/clinta74/react-dynamic-filterbar-bootstrap#readme",
   "files": [
     "lib",
     "src"
