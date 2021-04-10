@@ -17,6 +17,7 @@ Add your filterbar to the page and handle the updateF
 
 ``` javascript
 import { Filters, FilterBar, ChangeFQLHander } from 'react-dynamic-filterbar';
+import { StringFilter, NumericFilter, SelectFilter, DateFilter } from 'react-dynamic-filterbar/filter-bar';
 type AppProps = {};
 type AppState = {
     fql?: FilterBars.FilterQueryLanguage<MyData>,
@@ -37,11 +38,11 @@ class App extends React.Component<AppProps, AppState> {
   render() {
   return (
     <FilterBar onFilterUpdate={this.onFilterUpdate} fql={fql} buttonClassName="btn">
-      <Filters.StringFilter field={['firstName', 'lastName']} label="Name" className="form-control" buttonClassName="btn btn-primary" />
-      <Filters.StringFilter field="comment" label="Comment" className="form-control" buttonClassName="btn btn-primary" showOperator />
-      <Filters.NumericFilter field="amount" label="Amount" className="form-control" />
-      <Filters.SelectFilter field="color" label="Colors" options={colorOptions} styles={customStyles} isMulti />
-      <Filters.DateFilter field="birthday" label="Birthday" showOperator buttonClassName="btn btn-primary" shown/>
+      <StringFilter field={['firstName', 'lastName']} label="Name" className="form-control" buttonClassName="btn btn-primary" />
+      <StringFilter field="comment" label="Comment" className="form-control" buttonClassName="btn btn-primary" showOperator />
+      <NumericFilter field="amount" label="Amount" className="form-control" />
+      <SelectFilter field="color" label="Colors" options={colorOptions} styles={customStyles} isMulti />
+      <DateFilter field="birthday" label="Birthday" showOperator buttonClassName="btn btn-primary" shown/>
     </FilterBar>);
   }
 }

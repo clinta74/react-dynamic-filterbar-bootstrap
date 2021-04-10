@@ -1,4 +1,4 @@
-import { FilterBar, Filters, ChangeFQLHander }  from './filter-bar';
+import { FilterBar, ChangeFQLHander }  from './filter-bar';
 import { Operations, Logics, IOperationsObj } from './enums';
 import { GetDefaultFilterQueryHandler, RemoveFilterHandler } from './filter-bar/filter-bar';
 import { Iterator, Comparer } from './dataSource/comparers';
@@ -60,7 +60,6 @@ export {
   Operations,
   Logics,
   FilterBar,
-  Filters,
   ChangeFQLHander,
   GetDefaultFilterQueryHandler,
   RemoveFilterHandler,
@@ -73,7 +72,6 @@ export default {
   dateTimeComparer,
   filterData,
   FilterBar,
-  Filters,
   Operations,
   Logics,
 }
