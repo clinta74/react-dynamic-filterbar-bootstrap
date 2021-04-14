@@ -3,9 +3,9 @@ import { get, head, find, first } from 'lodash';
 import classNames from 'classnames';
 
 // Local imports
-import { FilterBars } from '../../index';
-import { Operations, Logics } from '../../enums';
 import { Dropdown } from '../../dropdown/dropdown';
+import { FilterQuery, FilterQueryField, Logics, Operations } from 'filter-query-language-core';
+import { FilterProps, IDefaultFilterProps, IGetDefaultFilterQuery } from '../filter-bar';
 
 type StringFilterProps = {
     showOperator?: boolean,
@@ -32,7 +32,7 @@ const stringOperations = [
     }
 ]
 
-export const getDefaultFilterQuery = <Tobj extends {}>(field: FilterBars.FitlerQueryField<Tobj>): FilterBars.FilterQuery<Tobj> => ({
+export const getDefaultFilterQuery = <Tobj extends {}>(field: FilterQueryField<Tobj>): FilterQuery<Tobj> => ({
     field,
     logic: Logics.OR,
     filterItems: [{
@@ -41,8 +41,8 @@ export const getDefaultFilterQuery = <Tobj extends {}>(field: FilterBars.FitlerQ
     }]
 });
 
-export class StringFilter<Tobj> extends React.Component<FilterBars.FilterProps<Tobj, StringFilterProps>> {
-    public static defaultProps: FilterBars.IGetDefaultFilterQuery<FilterBars.IDefaultFilterProps> = {
+export class StringFilter<Tobj> extends React.Component<FilterProps<Tobj, StringFilterProps>> {
+    public static defaultProps: IGetDefaultFilterQuery<IDefaultFilterProps> = {
         getDefaultFilterQuery,
     }
 
@@ -73,11 +73,11 @@ export class StringFilter<Tobj> extends React.Component<FilterBars.FilterProps<T
         })
     }
 
-    getValue = (filterQuery: FilterBars.FilterQuery<Tobj> | undefined): any => {
+    getValue = (filterQuery: FilterQuery<Tobj> | undefined): any => {
         return get(head(filterQuery && filterQuery.filterItems), 'value', '');
     }
 
-    getOperation = (filterQuery: FilterBars.FilterQuery<Tobj> | undefined) => {
+    getOperation = (filterQuery: FilterQuery<Tobj> | undefined) => {
         return get(head(filterQuery && filterQuery.filterItems), 'operation', Operations.CONTAINS);
     }
 

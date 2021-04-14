@@ -3,9 +3,9 @@ import DatePicker from 'react-datepicker';
 import { get, find } from 'lodash';
 
 // Local imports
-import { FilterBars } from '../../index';
-import { Operations, Logics } from '../../enums';
 import { Dropdown } from '../../dropdown/dropdown';
+import { FilterQuery, FilterQueryField, Logics, Operations } from 'filter-query-language-core';
+import { FilterProps, IDefaultFilterProps, IGetDefaultFilterQuery } from '../filter-bar';
 
 const dateOperations = [
   {
@@ -28,7 +28,7 @@ type DateFilterProps = {
   buttonClassName?: string,
 }
 
-export const getDefaultFilterQuery = <Tobj extends {}>(field: FilterBars.FitlerQueryField<Tobj>): FilterBars.FilterQuery<Tobj> => ({
+export const getDefaultFilterQuery = <Tobj extends {}>(field: FilterQueryField<Tobj>): FilterQuery<Tobj> => ({
   field,
   logic: Logics.AND,
   filterItems: [{
@@ -37,8 +37,8 @@ export const getDefaultFilterQuery = <Tobj extends {}>(field: FilterBars.FitlerQ
   }]
 });
 
-export class DateFilter<Tobj> extends React.Component<FilterBars.FilterProps<Tobj, DateFilterProps>> {
-  public static defaultProps: FilterBars.IGetDefaultFilterQuery<FilterBars.IDefaultFilterProps> = {
+export class DateFilter<Tobj> extends React.Component<FilterProps<Tobj, DateFilterProps>> {
+  public static defaultProps: IGetDefaultFilterQuery<IDefaultFilterProps> = {
     getDefaultFilterQuery,
   }
 
@@ -46,7 +46,7 @@ export class DateFilter<Tobj> extends React.Component<FilterBars.FilterProps<Tob
    * Get the start date from the filter query.
    * This is always the value in the first filter item of the query.
    */
-  getStartDate = <Tobj extends {}>(filterQuery: FilterBars.FilterQuery<Tobj> | undefined) => {
+  getStartDate = <Tobj extends {}>(filterQuery: FilterQuery<Tobj> | undefined) => {
     return get(filterQuery, 'filterItems[0].value', new Date());
   }
 
@@ -55,7 +55,7 @@ export class DateFilter<Tobj> extends React.Component<FilterBars.FilterProps<Tob
    * This is always the value in the second element of filter items in a query.
    * The second element only exists for between operations.
    */
-  getEndDate = <Tobj extends {}>(filterQuery: FilterBars.FilterQuery<Tobj> | undefined) => {
+  getEndDate = <Tobj extends {}>(filterQuery: FilterQuery<Tobj> | undefined) => {
     return get(filterQuery, 'filterItems[1].value', new Date());
   }
 
@@ -63,7 +63,7 @@ export class DateFilter<Tobj> extends React.Component<FilterBars.FilterProps<Tob
    * Get the operation value based on the number of filter items and the 
    * operation of the first item, if there is only one.
    */
-  getOperationValue = <Tobj extends {}>(filterQuery: FilterBars.FilterQuery<Tobj> | undefined) => {
+  getOperationValue = <Tobj extends {}>(filterQuery: FilterQuery<Tobj> | undefined) => {
     if(filterQuery) {
       if(filterQuery.filterItems.length > 1) {
         return 3;

@@ -4,10 +4,10 @@ import Select from 'react-select';
 
 
 // Local imports
-import { FilterBars } from '../../index';
-import { Operations, Logics } from '../../enums';
 import { ActionMeta, ValueType } from 'react-select/lib/types';
 import { Styles } from 'react-select/lib/styles';
+import { FilterQuery, FilterQueryField, Operations, Logics } from 'filter-query-language-core';
+import { FilterProps, IDefaultFilterProps, IGetDefaultFilterQuery } from '../filter-bar';
 
 type MultiSelectFilterProps = {
   options: Option[],
@@ -20,14 +20,14 @@ export type Option = {
   option: string,
 }
 
-export const getDefaultFilterQuery = <Tobj extends {}>(field: FilterBars.FitlerQueryField<Tobj>): FilterBars.FilterQuery<Tobj> => ({
+export const getDefaultFilterQuery = <Tobj extends {}>(field: FilterQueryField<Tobj>): FilterQuery<Tobj> => ({
   field,
   logic: Logics.OR,
   filterItems: [],
 });
 
-export class SelectFilter<Tobj> extends React.PureComponent<FilterBars.FilterProps<Tobj, MultiSelectFilterProps>> {
-  public static defaultProps: FilterBars.IGetDefaultFilterQuery<FilterBars.IDefaultFilterProps> = {
+export class SelectFilter<Tobj> extends React.PureComponent<FilterProps<Tobj, MultiSelectFilterProps>> {
+  public static defaultProps: IGetDefaultFilterQuery<IDefaultFilterProps> = {
     getDefaultFilterQuery,
   }
 

@@ -3,10 +3,11 @@ import { FilterBarIcons } from '../filter-bar-icons';
 import { Icon } from 'react-svg-icon-host';
 import classNames from 'classnames';
 
-import { FilterBars, RemoveFilterHandler } from '../index'
+import { RemoveFilterHandler } from '../index'
+import { FilterQueryField } from 'filter-query-language-core';
 
 interface IFilterItemProps<Tobj> {
-  field: FilterBars.FitlerQueryField<Tobj>,
+  field: FilterQueryField<Tobj>,
   filter: JSX.Element,
   label: string,
   labelClassName?: string,

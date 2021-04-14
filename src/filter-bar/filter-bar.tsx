@@ -1,18 +1,37 @@
 import React from 'react';
 
 // Local imports
-import { FilterBars, Logics } from '../index'
 import { FilterItem } from './filter-item';
 import { Dropdown } from '../dropdown/dropdown';
 import classNames from 'classnames';
+import { FilterQuery, FilterQueryField, FilterQueryLanguage, Logics } from 'filter-query-language-core';
 
-export type ChangeFQLHander<Tobj> = (fql: FilterBars.FilterQueryLanguage<Tobj>) => void;
-export type RemoveFilterHandler<Tobj> = (field: FilterBars.FitlerQueryField<Tobj>) => void;
-export type GetDefaultFilterQueryHandler<Tobj> = (field: FilterBars.FitlerQueryField<Tobj>) => FilterBars.FilterQuery<Tobj>;
+export type ChangeFQLHander<Tobj> = (fql: FilterQueryLanguage<Tobj>) => void;
+export type RemoveFilterHandler<Tobj> = (field: FilterQueryField<Tobj>) => void;
+export type GetDefaultFilterQueryHandler<Tobj> = (field: FilterQueryField<Tobj>) => FilterQuery<Tobj>;
+
+export type FilterUpdateHandler<Tobj> = (filterQuery: FilterQuery<Tobj>) => void;
+
+export interface IGetDefaultFilterQuery<Tobj> {
+    getDefaultFilterQuery?: GetDefaultFilterQueryHandler<Tobj>,
+}
+
+export interface IDefaultFilterProps {
+    getDefaultFilterQuery: () => void;
+}
+
+export type FilterProps<Tobj, Props = {}> = {
+    label: string;
+    field: FilterQueryField<Tobj>,
+    labelClassName?: string,
+    filterQuery?: FilterQuery<Tobj>,
+    onFilterUpdate?: FilterUpdateHandler<Tobj>,
+    shown?: boolean,
+} & Props & IGetDefaultFilterQuery<Tobj>;
 
 type FilterBarProps<Tobj> = {
     onFilterUpdate: ChangeFQLHander<Tobj>,
-    fql: FilterBars.FilterQueryLanguage<Tobj> | undefined,
+    fql: FilterQueryLanguage<Tobj> | undefined,
     className?: string,
     labelClassName?: string,
     buttonClassName?: string,
@@ -23,7 +42,7 @@ type FilterBarState = {
     showMenu: boolean
 }
 
-type FilterElement<Tobj> = React.ReactElement<FilterBars.FilterProps<Tobj>>;
+type FilterElement<Tobj> = React.ReactElement<FilterProps<Tobj>>;
 
 export class FilterBar<Tobj> extends React.Component<FilterBarProps<Tobj>, FilterBarState> {
     constructor(props: FilterBarProps<Tobj>) {
@@ -45,7 +64,7 @@ export class FilterBar<Tobj> extends React.Component<FilterBarProps<Tobj>, Filte
             }) as FilterElement<Tobj>[])
             .map(filter => {
                 const field = filter.props.field;
-                const filterQuery: FilterBars.FilterQuery<Tobj> = filter.props.getDefaultFilterQuery && filter.props.getDefaultFilterQuery(field) || {
+                const filterQuery: FilterQuery<Tobj> = filter.props.getDefaultFilterQuery && filter.props.getDefaultFilterQuery(field) || {
                     field,
                     logic: Logics.OR,
                     filterItems: []
@@ -82,7 +101,7 @@ export class FilterBar<Tobj> extends React.Component<FilterBarProps<Tobj>, Filte
     onAddFilter = (filter: FilterElement<Tobj>) => {
         const { fql, onFilterUpdate } = this.props;
         const field = filter.props.field;
-        const filterQuery: FilterBars.FilterQuery<Tobj> = filter.props.getDefaultFilterQuery && filter.props.getDefaultFilterQuery(field) || {
+        const filterQuery: FilterQuery<Tobj> = filter.props.getDefaultFilterQuery && filter.props.getDefaultFilterQuery(field) || {
             field,
             logic: Logics.OR,
             filterItems: []
@@ -94,7 +113,7 @@ export class FilterBar<Tobj> extends React.Component<FilterBarProps<Tobj>, Filte
         }
     }
 
-    getField(fields: FilterBars.FitlerQueryField<Tobj>) {
+    getField(fields: FilterQueryField<Tobj>) {
         return Array.isArray(fields) ? fields.join(':') : fields.toString();
     }
 
@@ -109,7 +128,7 @@ export class FilterBar<Tobj> extends React.Component<FilterBarProps<Tobj>, Filte
 
             const filter = React.cloneElement(activeFilter, {
                 filterQuery: fq,
-                onFilterUpdate: (filterQuery: FilterBars.FilterQuery<Tobj>) => {
+                onFilterUpdate: (filterQuery: FilterQuery<Tobj>) => {
                     const fqIndex = fql.filterQueries.findIndex(_filterQuery => _filterQuery.field === fq.field);
                     fql.filterQueries = [
                         ...fql.filterQueries.slice(0, fqIndex),

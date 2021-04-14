@@ -1,13 +1,11 @@
 import React from 'react';
 import FlexTable from 'react-flexbox-table';
-import { FilterBars, FilterBar, ChangeFQLHander, filterData } from '../../../../src/index';
+import { FilterBar, ChangeFQLHander } from '../../../../src/index';
 import { customStyles } from '../../../../src/filter-bar/filters/select-filter';
 import { data } from './example-data';
 import moment from 'moment';
-import { numberComparer,
-    stringComparer,
-    dateComparer } from '../../../../src/index';
 import { StringFilter, NumericFilter, SelectFilter, DateFilter } from '../../../../src/filter-bar';
+import { dateComparer, filterData, FilterMapper, FilterQueryLanguage, numberComparer, stringComparer } from 'filter-query-language-core';
 
 const color = ['red', 'green', 'blue', 'black', 'pink', 'yellow', 'orange', 'indigo'];
 
@@ -22,12 +20,12 @@ export type MyData = {
 
 type AppProps = {};
 type AppState = {
-    fql?: FilterBars.FilterQueryLanguage<MyData>,
+    fql?: FilterQueryLanguage<MyData>,
     display: MyData[],
     filterApplied: boolean,
 }
 
-const fieldToIteratorMapper: FilterBars.FilterMapper<MyData> = {
+const fieldToIteratorMapper: FilterMapper<MyData> = {
     firstName: stringComparer,
     lastName: stringComparer,
     comment: stringComparer,
