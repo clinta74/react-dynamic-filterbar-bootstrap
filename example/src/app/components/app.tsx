@@ -1,5 +1,5 @@
 import React from 'react';
-import FlexTable from 'react-flexbox-table';
+import { BoundColumn, DataTable } from 'react-flex-data-table';
 import { FilterBar, ChangeFQLHander } from '../../../../src/index';
 import { customStyles } from '../../../../src/filter-bar/filters/select-filter';
 import { data } from './example-data';
@@ -90,14 +90,14 @@ export class App extends React.Component<AppProps, AppState> {
                 </div>
 
                 <div>
-                    <FlexTable.DataTable items={this.state.display}>
-                        <FlexTable.BoundColumn<MyData> binding={item => item.firstName} headerText="First Name" className="col-3 col-md-2" />
-                        <FlexTable.BoundColumn<MyData> binding={item => item.lastName} headerText="Last Name" className="col-3 col-md-2" />
-                        <FlexTable.BoundColumn<MyData> binding={item => item.amount.toString()} headerText="Amount" className="col-3 col-md-1" />
-                        <FlexTable.BoundColumn<MyData> binding={item => item.color} headerText="Color" className="col-3 col-md-2" />
-                        <FlexTable.BoundColumn<MyData> binding={item => item.birthday} headerText="Birthday" className="col-4 col-md-2" formatter={value => moment(value).format('L')} />
-                        <FlexTable.BoundColumn<MyData> binding={item => item.comment} headerText="Comment" className="col-12 col-md-3" />
-                    </FlexTable.DataTable>
+                    <DataTable items={this.state.display}>
+                        <BoundColumn<MyData> binding={item => item.firstName} headerText="First Name" className="col-3 col-md-2" />
+                        <BoundColumn<MyData> binding={item => item.lastName} headerText="Last Name" className="col-3 col-md-2" />
+                        <BoundColumn<MyData> binding={item => item.amount.toString()} headerText="Amount" className="col-3 col-md-1" />
+                        <BoundColumn<MyData> binding={item => item.color} headerText="Color" className="col-3 col-md-2" />
+                        <BoundColumn<MyData> binding={item => item.birthday} headerText="Birthday" className="col-4 col-md-2" formatter={value => moment(value).format('L')} />
+                        <BoundColumn<MyData> binding={item => item.comment} headerText="Comment" className="col-12 col-md-3" />
+                    </DataTable>
                 </div>
             </section>
         );

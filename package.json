@@ -1,67 +1,67 @@
 {
-  "name": "react-dynamic-filterbar-bootstrap",
-  "version": "1.1.0",
-  "description": "A filter bar to host dynamic filters using react.",
-  "main": "lib/index.js",
-  "peerDependencies": {
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
-  },
-  "devDependencies": {
-    "@types/classnames": "^2.2.11",
-    "@types/lodash": "^4.14.168",
-    "@types/node": "^11.15.50",
-    "@types/react": "^16.14.5",
-    "@types/react-datepicker": "^2.11.1",
-    "@types/react-dom": "^16.9.12",
-    "@types/react-router-dom": "^4.3.5",
-    "@types/react-select": "^2.0.19",
-    "node-sass": "^4.14.1",
-    "npm-watch": "^0.6.0",
-    "parcel-bundler": "^1.12.5",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
-    "react-flexbox-table": "^0.3.12",
-    "react-hot-loader": "^4.13.0",
-    "react-svg-icon-host": "^1.0.9",
-    "svg-icon-converter": "^1.1.2",
-    "typescript": "^4.2.4"
-  },
-  "watch": {
-    "build:js": "src/{*.tsx, *.ts}",
-    "build:css": "src/{*.scss, *.ts}"
-  },
-  "scripts": {
-    "prepare": "npm run clean && npm run build",
-    "start": "npx parcel example/src/index.html --out-dir example/dist --open",
-    "build": "npm run build:icons && npm run build:js && npm run build:css",
-    "build:js": "npx tsc",
-    "build:css": "npx node-sass src/scss/filter-bar.scss -o ./lib/css",
-    "build:icons": "npx svg-convert -s icons -o src/filter-bar-icons -l FilterBarIcons",
-    "clean": "rm -Rf ./lib",
-    "watch": "npx npm-watch",
-    "build:docs": "rm -Rf ./docs && parcel build example/src/index.html --out-dir ./docs --public-url ./"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/clinta74/react-dynamic-filterbar-bootstrap.git"
-  },
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/clinta74/react-dynamic-filterbar-bootstrapr/issues"
-  },
-  "homepage": "https://github.com/clinta74/react-dynamic-filterbar-bootstrap#readme",
-  "files": [
-    "lib",
-    "src"
-  ],
-  "dependencies": {
-    "classnames": "^2.3.1",
-    "filter-query-language-core": "^1.4.1",
-    "lodash": "^4.17.21",
-    "moment": "^2.29.1",
-    "react-datepicker": "^2.16.0",
-    "react-select": "^2.4.4"
-  }
+    "name": "react-dynamic-filterbar-bootstrap",
+    "version": "1.2.1",
+    "description": "A filter bar to host dynamic filters using react.",
+    "main": "lib/index.js",
+    "peerDependencies": {
+        "react": "^16.8.6",
+        "react-dom": "^16.8.6"
+    },
+    "devDependencies": {
+        "@types/classnames": "^2.2.11",
+        "@types/lodash": "^4.14.168",
+        "@types/node": "^11.15.50",
+        "@types/react": "^16.14.5",
+        "@types/react-datepicker": "^2.11.1",
+        "@types/react-dom": "^16.9.12",
+        "@types/react-router-dom": "^4.3.5",
+        "@types/react-select": "^2.0.19",
+        "node-sass": "^4.14.1",
+        "npm-watch": "^0.6.0",
+        "parcel-bundler": "^1.12.5",
+        "react": "^16.14.0",
+        "react-dom": "^16.14.0",
+        "react-flex-data-table": "^2.1.0",
+        "react-hot-loader": "^4.13.0",
+        "react-svg-icon-host": "^1.0.9",
+        "svg-icon-converter": "^1.1.2",
+        "typescript": "^4.2.4"
+    },
+    "watch": {
+        "build:js": "src/{*.tsx, *.ts}",
+        "build:css": "src/{*.scss, *.ts}"
+    },
+    "scripts": {
+        "prepare": "npm run clean && npm run build",
+        "start": "npx parcel example/src/index.html --out-dir example/dist --open",
+        "build": "npm run build:icons && npm run build:js && npm run build:css",
+        "build:js": "npx tsc",
+        "build:css": "npx node-sass src/scss/filter-bar.scss -o ./lib/css",
+        "build:icons": "npx svg-convert -s icons -o src/filter-bar-icons -l FilterBarIcons",
+        "clean": "rm -Rf ./lib",
+        "watch": "npx npm-watch",
+        "build:docs": "rm -Rf ./docs && parcel build example/src/index.html --out-dir ./docs --public-url ./"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/clinta74/react-dynamic-filterbar-bootstrap.git"
+    },
+    "author": "",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/clinta74/react-dynamic-filterbar-bootstrapr/issues"
+    },
+    "homepage": "https://github.com/clinta74/react-dynamic-filterbar-bootstrap#readme",
+    "files": [
+        "lib",
+        "src"
+    ],
+    "dependencies": {
+        "classnames": "^2.3.1",
+        "filter-query-language-core": "^1.4.1",
+        "lodash": "^4.17.21",
+        "moment": "^2.29.1",
+        "react-datepicker": "^2.16.0",
+        "react-select": "^2.4.4"
+    }
 }
