@@ -9,7 +9,7 @@ You can view the [demo](https://clinta74.github.io/react-dynamic-filterbar/).
 
 ## Install
 ``` 
-npm install react-dynamic-filterbar
+npm install react-dynamic-filterbar-bootstrap
 ```
 
 ## Usage
