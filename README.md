@@ -5,7 +5,7 @@ in a list.  Choosing a filter adds it to the bar with the option to then
 remove that filter.  Those filters present the user with the fields or selections
 that allow the user to configure the values and operations of that filter.
 
-You can view the [demo](https://clinta74.github.io/react-dynamic-filterbar/).
+You can view the [demo](https://clinta74.github.io/react-dynamic-filterbar-bootstrap/).
 
 ## Install
 ``` 
